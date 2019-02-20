@@ -296,6 +296,9 @@ switch (this.name) {
                 font: {}
             };
         }
+        if (cell_obj.style.font === undefined) {
+            cell_obj.style.font = {};
+        }
 
         cell_obj.style.font.color = this.value;
         break;
@@ -309,6 +312,9 @@ switch (this.name) {
             cell_obj.style = {
                 font: {}
             };
+        }
+        if (cell_obj.style.font === undefined) {
+            cell_obj.style.font = {};
         }
 
         cell_obj.style.font.family = this.value;
@@ -324,6 +330,9 @@ switch (this.name) {
                 font: {}
             };
         }
+        if (cell_obj.style.font === undefined) {
+            cell_obj.style.font = {};
+        }
 
         cell_obj.style.font.size = parseInt(this.value);
         break;
@@ -337,6 +346,9 @@ switch (this.name) {
             cell_obj.style = {
                 font: {}
             };
+        }
+        if (cell_obj.style.font === undefined) {
+            cell_obj.style.font = {};
         }
 
         cell_obj.style.font.weight = this.value;
