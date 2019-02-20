@@ -1,0 +1,157 @@
+﻿<AML>
+ <Item type="View" id="706FD3DA9D934A929A96E2AA966785B7" action="add">
+  <client>js</client>
+  <display_priority>1</display_priority>
+  <related_id keyed_name="labs_ViewCard" type="Form">
+   <Item type="Form" id="B15A43D5147D4B36B478A1EE9623A532" action="add">
+    <category_form>0</category_form>
+    <description>Custom editor with preview</description>
+    <height>234</height>
+    <stylesheet><![CDATA[../styles/default.css]]></stylesheet>
+    <width>699</width>
+    <name>labs_ViewCard</name>
+    <Relationships>
+     <Item type="Body" id="53E136820BA64688982491EF3AB60287" action="add">
+      <css>@import '../Modules/aras.innovator.GraphView/Styles/graphView.css';
+@import '../Modules/aras.innovator.GraphView/Styles/graphTooltip.css';
+@import '../Modules/aras.innovator.GraphView/Styles/expandSettingsMenu.css';
+
+#preview-table {
+    margin-top: 5px;
+}
+
+.sys_fn_card_preview {
+    width: 600px;
+    height: 600px;
+overflow: hidden;
+}
+
+#A6260256F9564425BBE3803E4EACD504span {
+    width: 600px;
+    height: 600px;
+}
+
+    #editor-tabs {
+        border-right: 1px solid #d6d6d6;
+        height: 600px;
+        width: 180px;
+        padding-top: 120px;
+    }
+    
+    .editor-tab-label {
+        font-family: tahoma, arial, helvetica, sans-serif;
+        font-size: 10pt;
+        font-weight: bold;
+        color: #000000;
+        margin-left: 5px;
+    }
+
+    .editor-tab {
+        background-color: #FFFFFF;
+        width: 180px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        border-right: 1px solid #d6d6d6;
+        cursor:pointer;
+    }
+
+    .editor-tab-active {
+        border-right: 1px solid #FFFFFF;
+        border-bottom: 1px solid #d6d6d6;
+        border-top: 1px solid #d6d6d6;
+        cursor: default;
+    }
+    
+    .indicator {
+    	height: 12px;
+        width: 10px;
+    }
+    
+    .editor-tab svg circle {
+    	stroke: red;
+        stroke-width: 2;
+        fill: white;
+    }
+    
+    .editor-tab-active svg circle {
+        stroke: red;
+        stroke-width: 2;
+        fill: red;
+    }
+
+#layout-editor {
+  border: 1px solid #000000;
+  border-collapse: collapse;
+}
+
+.default-cell {
+  padding-left: 5px;
+  border: 1px solid #000000;
+}
+
+.default-cell:hover {
+  background-color: #f5e7c9;
+}
+
+.selected-cell {
+ border: 2px solid #000000;
+  background-color: #f5e7c9;
+}
+</css>
+      <sort_order>128</sort_order>
+      <source_id keyed_name="labs_ViewCard" type="Form">B15A43D5147D4B36B478A1EE9623A532</source_id>
+     </Item>
+     <Item type="Form Event" id="3662565A950F4B8D9D2B5677DD2645B9" action="add">
+      <form_event>onformpopulated</form_event>
+      <related_id keyed_name="labs_ViewCard_LoadFunctions" type="Method">
+       <Item type="Method" action="get" select="id">
+        <name>labs_ViewCard_LoadFunctions</name>
+       </Item>
+      </related_id>
+      <sort_order>0</sort_order>
+      <source_id keyed_name="labs_ViewCard" type="Form">B15A43D5147D4B36B478A1EE9623A532</source_id>
+     </Item>
+     <Item type="Form Event" id="E9F9AF8CA8184303BFFD57D25EE6C793" action="add">
+      <form_event>onformpopulated</form_event>
+      <related_id keyed_name="labs_ViewCard_PopForm" type="Method">
+       <Item type="Method" action="get" select="id">
+        <name>labs_ViewCard_PopForm</name>
+       </Item>
+      </related_id>
+      <sort_order>384</sort_order>
+      <source_id keyed_name="labs_ViewCard" type="Form">B15A43D5147D4B36B478A1EE9623A532</source_id>
+     </Item>
+     <Item type="Form Event" id="2135FA62D45844C8B5FCD016873A8F9F" action="add">
+      <form_event>onload</form_event>
+      <related_id keyed_name="labs_ViewCard_PopLists" type="Method">
+       <Item type="Method" action="get" select="id">
+        <name>labs_ViewCard_PopLists</name>
+       </Item>
+      </related_id>
+      <sort_order>0</sort_order>
+      <source_id keyed_name="labs_ViewCard" type="Form">B15A43D5147D4B36B478A1EE9623A532</source_id>
+     </Item>
+     <Item type="Form Event" id="6EFAE983E34A4C89A94F0B40634A9E28" action="add">
+      <form_event>onload</form_event>
+      <related_id keyed_name="labs_ViewCard_ToggleFields" type="Method">
+       <Item type="Method" action="get" select="id">
+        <name>labs_ViewCard_ToggleFields</name>
+       </Item>
+      </related_id>
+      <sort_order>256</sort_order>
+      <source_id keyed_name="labs_ViewCard" type="Form">B15A43D5147D4B36B478A1EE9623A532</source_id>
+     </Item>
+    </Relationships>
+   </Item>
+  </related_id>
+  <role keyed_name="World" type="Identity">
+   <Item type="Identity" action="get" select="id">
+    <name>World</name>
+   </Item>
+  </role>
+  <show_ssvc>0</show_ssvc>
+  <sort_order>256</sort_order>
+  <source_id keyed_name="gn_ViewCard" type="ItemType" name="gn_ViewCard">B5B1E4E180CF43A986D05ED063EA7D67</source_id>
+  <type>default</type>
+ </Item>
+</AML>
