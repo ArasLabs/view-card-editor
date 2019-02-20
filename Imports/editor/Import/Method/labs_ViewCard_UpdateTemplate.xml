@@ -1,0 +1,411 @@
+﻿<AML>
+ <Item type="Method" id="1E14E4E76EF740149DC513C62B3988B5" action="add">
+  <comments>An onChange event that updates the template_definition object when a field is edited.</comments>
+  <execution_allowed_to keyed_name="Administrators" type="Identity">2618D6F5A90949BAA7E920D1B04C7EE1</execution_allowed_to>
+  <method_code><![CDATA[var obj = document.ViewCard.obj;
+if (!obj) {
+    obj = document.ViewCard.build_object();
+}
+
+// update template object
+switch (this.name) {
+
+    /**** obj.container.style *************************************************/
+    case "node_style_bg_color":
+        if (!obj.container.style) {
+            obj.container.style = {};
+        }
+
+        obj.container.style.color = this.value;
+        break;
+
+    case "node_style_height":
+        if (!obj.container.style) {
+            obj.container.style = {};
+        }
+
+        obj.container.style.height = parseInt(this.value);
+        break;
+
+    case "node_style_width":
+        if (!obj.container.style) {
+            obj.container.style = {};
+        }
+
+        obj.container.style.width = parseInt(this.value);
+        break;
+
+    /**** obj.container.style.padding *****************************************/
+    case "node_style_padding_bottom":
+        if (!obj.container.style) {
+            obj.container.style = {
+                padding: {}
+            };
+        }
+
+        obj.container.style.padding.bottom = parseInt(this.value);
+        break;
+
+    case "node_style_padding_left":
+        if (!obj.container.style) {
+            obj.container.style = {
+                padding: {}
+            };
+        }
+
+        obj.container.style.padding.left = parseInt(this.value);
+        break;
+
+    case "node_style_padding_right":
+        if (!obj.container.style) {
+            obj.container.style = {
+                padding: {}
+            };
+        }
+
+        obj.container.style.padding.right = parseInt(this.value);
+        break;
+
+    case "node_style_padding_top":
+        if (!obj.container.style) {
+            obj.container.style = {
+                padding: {}
+            };
+        }
+
+        obj.container.style.padding.top = parseInt(this.value);
+        break;
+
+    /**** obj.container.style.border ******************************************/
+    case "node_style_border_color":
+        if (!obj.container.style) {
+            obj.container.style = {
+                border: {}
+            };
+        }
+
+        obj.container.style.border.color = this.value;
+        break;
+
+    case "node_style_border_radius":
+        if (!obj.container.style) {
+            obj.container.style = {
+                border: {}
+            };
+        }
+
+        obj.container.style.border.cornerRadius = parseInt(this.value);
+        break;
+
+    case "node_style_border_width":
+        if (!obj.container.style) {
+            obj.container.style = {
+                border: {}
+            };
+        }
+
+        obj.container.style.border.width = parseInt(this.value);
+        break;
+
+    /**** obj.container.style.border.shadow ***********************************/
+    case "node_style_shadow_color":
+        if (!obj.container.style) {
+            obj.container.style = {
+                border: {
+                    shadow: {}
+                }
+            };
+        }
+
+        obj.container.style.border.shadow.color = this.value;
+        break;
+
+    case "node_style_shadow_opacity":
+        if (!obj.container.style) {
+            obj.container.style = {
+                border: {
+                    shadow: {}
+                }
+            };
+        }
+
+        obj.container.style.border.shadow.opacity = parseFloat(this.value);
+        break;
+
+    case "node_style_shadow_x":
+        if (!obj.container.style) {
+            obj.container.style = {
+                border: {
+                    shadow: {}
+                }
+            };
+        }
+
+        obj.container.style.border.shadow.horizontal = parseInt(this.value);
+        break;
+
+    case "node_style_shadow_y":
+        if (!obj.container.style) {
+            obj.container.style = {
+                border: {
+                    shadow: {}
+                }
+            };
+        }
+
+        obj.container.style.border.shadow.vertical = parseInt(this.value);
+        break;
+
+    /**** obj.style ***********************************************************/
+    case "con_style_color":
+        if (!obj.style) {
+            obj.style = {};
+        }
+
+        obj.style.color = this.value;
+        break;
+
+    case "con_style_weight":
+        if (!obj.style) {
+            obj.style = {};
+        }
+
+        obj.style.weight = this.value;
+        break;
+
+    /**** obj.style.arrowhead *************************************************/
+    case "con_style_arrow_color":
+        if (!obj.style) {
+            obj.style = {
+                arrowhead: {}
+            };
+        }
+
+        obj.style.arrowhead.color = this.value;
+        break;
+
+    case "con_style_arrow_height":
+        if (!obj.style) {
+            obj.style = {
+                arrowhead: {}
+            };
+        }
+
+        obj.style.arrowhead.height = parseInt(this.value);
+        break;
+
+    case "con_style_arrow_width":
+        if (!obj.style) {
+            obj.style = {
+                arrowhead: {}
+            };
+        }
+
+        obj.style.arrowhead.width = parseInt(this.value);
+        break;
+
+    /**** cell-specific ***********************************************************/
+
+    /**** container.style.cells ***********************************************/
+    case "node_content_binding":
+        var cell_obj = getSelectedCellData();
+        if (cell_obj === null || cell_obj === undefined) {
+            return;
+        }
+
+        cell_obj.content_binding = this.value;
+        break;
+
+    case "node_content_type":
+        var cell_obj = getSelectedCellData();
+        if (cell_obj === null || cell_obj === undefined) {
+            return;
+        }
+
+        cell_obj.content = this.value;
+        break;
+
+    /**** container.style.rows ************************************************/
+    case "node_content_row_height":
+        var cell_element = document.selected_cell;
+        if (cell_element === null || cell_element === undefined) {
+            return;
+        }
+        console.log('updating row height');
+        console.log(obj);
+
+        var row_id = cell_element.getAttribute("row");
+        obj.container.style.rows[row_id].height = parseInt(this.value);
+        break;
+
+    /**** container.style.cols ************************************************/
+    case "node_content_col_width":
+        var cell_element = document.selected_cell;
+        if (cell_element === null || cell_element === undefined) {
+            return;
+        }
+
+        obj.container.style.cols[cell_element.getAttribute("col")].width = parseInt(this.value);
+        break;
+
+    /**** container.style.cells.style *****************************************/
+    case "content_style_h_alignment":
+        var cell_obj = getSelectedCellData();
+        if (cell_obj === null || cell_obj === undefined) {
+            return;
+        }
+        if (cell_obj.style === undefined) {
+            cell_obj.style = {};
+        }
+
+        cell_obj.style.horizontalAlignment = this.value;
+        break;
+
+    case "content_style_text_decoration":
+        var cell_obj = getSelectedCellData();
+        if (cell_obj === null || cell_obj === undefined) {
+            return;
+        }
+        if (cell_obj.style === undefined) {
+            cell_obj.style = {};
+        }
+
+        cell_obj.style.textDecoration = this.value;
+        break;
+
+    case "content_style_v_align":
+        var cell_obj = getSelectedCellData();
+        if (cell_obj === null || cell_obj === undefined) {
+            return;
+        }
+        if (cell_obj.style === undefined) {
+            cell_obj.style = {};
+        }
+
+        cell_obj.style.verticalAlignment = this.value;
+        break;
+
+    /**** container.style.cells.style.font ************************************/
+    case "content_style_font_color":
+        var cell_obj = getSelectedCellData();
+        if (cell_obj === null || cell_obj === undefined) {
+            return;
+        }
+        if (cell_obj.style === undefined) {
+            cell_obj.style = {
+                font: {}
+            };
+        }
+
+        cell_obj.style.font.color = this.value;
+        break;
+
+    case "content_style_font_family":
+        var cell_obj = getSelectedCellData();
+        if (cell_obj === null || cell_obj === undefined) {
+            return;
+        }
+        if (cell_obj.style === undefined) {
+            cell_obj.style = {
+                font: {}
+            };
+        }
+
+        cell_obj.style.font.family = this.value;
+        break;
+
+    case "content_style_font_size":
+        var cell_obj = getSelectedCellData();
+        if (cell_obj === null || cell_obj === undefined) {
+            return;
+        }
+        if (cell_obj.style === undefined) {
+            cell_obj.style = {
+                font: {}
+            };
+        }
+
+        cell_obj.style.font.size = parseInt(this.value);
+        break;
+
+    case "content_style_font_weight":
+        var cell_obj = getSelectedCellData();
+        if (cell_obj === null || cell_obj === undefined) {
+            return;
+        }
+        if (cell_obj.style === undefined) {
+            cell_obj.style = {
+                font: {}
+            };
+        }
+
+        cell_obj.style.font.weight = this.value;
+        break;
+}
+
+// update dom and form
+document.thisItem.setProperty("template_definition", JSON.stringify(obj, null, "\t"));
+
+function defaultTemplate() {
+    var t = '';
+    t += '{';
+    t += '    "container": {';
+    t += '        "type": "grid",';
+    t += '        "style": {';
+    t += '        }';
+    t += '    },';
+    t += '    "style": {';
+    t += '    }';
+    t += '}';
+    return t;
+}
+
+function getSelectedCell() {
+    return document.selected_cell;
+}
+
+function getSelectedCellIndex(obj) {
+    var cell_element = getSelectedCell();
+
+    if (cell_element === null || cell_element === undefined) {
+        return -1;
+    }
+
+    var cells = obj.container.style.cells;
+
+    if (cells === null || cells === undefined) {
+        obj.container.style.cells = [];
+        return -1;
+    }
+
+    for (var i = 0; i < cells.length; i++) {
+        var this_cell = cells[i];
+        if (this_cell.col == cell_element.getAttribute("col") && this_cell.row == cell_element.getAttribute("row")) {
+            return i;
+        }
+    }
+
+    return -1;
+}
+
+function getSelectedCellData() {
+    var index = getSelectedCellIndex(obj);
+    if (index < 0) {
+        var cell_element = getSelectedCell();
+        if (cell_element === null || cell_element === undefined) {
+            return null;
+        }
+        // add new cell
+        var new_cell = {
+            col: parseInt(cell_element.getAttribute("col")),
+            row: parseInt(cell_element.getAttribute("row"))
+        }
+        obj.container.style.cells.push(new_cell);
+        return new_cell;
+    }
+    return obj.container.style.cells[index];
+}]]></method_code>
+  <method_type>JavaScript</method_type>
+  <name>labs_ViewCard_UpdateTemplate</name>
+ </Item>
+</AML>

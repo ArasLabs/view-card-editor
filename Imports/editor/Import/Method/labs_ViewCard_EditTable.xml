@@ -1,0 +1,28 @@
+﻿<AML>
+ <Item type="Method" id="A9FCCCF8D673451D8FAC1B375402AA41" action="add">
+  <comments>An onClick Field Event for the column and row add/remove buttons.</comments>
+  <execution_allowed_to keyed_name="Administrators" type="Identity">2618D6F5A90949BAA7E920D1B04C7EE1</execution_allowed_to>
+  <method_code><![CDATA[switch (this.value) {
+    case "Add Row":
+        document.NodeEditor.add_row();
+        break;
+
+    case "Add Column":
+        document.NodeEditor.add_col();
+        break;
+
+    case "Remove Row":
+        document.NodeEditor.remove_row();
+        break;
+
+    case "Remove Column":
+        document.NodeEditor.remove_col();
+        break;
+}
+
+// update template_definition
+document.thisItem.setProperty("template_definition", JSON.stringify(document.ViewCard.obj, null, "\t"));]]></method_code>
+  <method_type>JavaScript</method_type>
+  <name>labs_ViewCard_EditTable</name>
+ </Item>
+</AML>

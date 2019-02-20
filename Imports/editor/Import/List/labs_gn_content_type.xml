@@ -1,0 +1,19 @@
+﻿<AML>
+ <Item type="List" id="FC43C076D94047DB89F7399BE1A418D6" action="add">
+  <name>labs_gn_content_type</name>
+  <Relationships>
+   <Item type="Value" id="ABE538C650B34374AAB175B9FD98108E" action="add">
+    <label xml:lang="en">image</label>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="labs_gn_content_type" type="List">FC43C076D94047DB89F7399BE1A418D6</source_id>
+    <value>image</value>
+   </Item>
+   <Item type="Value" id="A979936DF2C8407994C158105ED6B7E6" action="add">
+    <label xml:lang="en">text</label>
+    <sort_order>256</sort_order>
+    <source_id keyed_name="labs_gn_content_type" type="List">FC43C076D94047DB89F7399BE1A418D6</source_id>
+    <value>text</value>
+   </Item>
+  </Relationships>
+ </Item>
+</AML>

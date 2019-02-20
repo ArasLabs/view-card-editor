@@ -1,0 +1,43 @@
+﻿<AML>
+ <Item type="List" id="09B69BE6CB0440A2A2E21AEBB474F16B" action="add">
+  <name>labs_gn_text_decoration</name>
+  <Relationships>
+   <Item type="Value" id="B621AC38AD0F47D895B3C29224FDBFC5" action="add">
+    <label xml:lang="en">none</label>
+    <sort_order>0</sort_order>
+    <source_id keyed_name="labs_gn_text_decoration" type="List">09B69BE6CB0440A2A2E21AEBB474F16B</source_id>
+    <value>none</value>
+   </Item>
+   <Item type="Value" id="45432E790A404F96A5101D956550C4BC" action="add">
+    <label xml:lang="en">inherit</label>
+    <sort_order>5</sort_order>
+    <source_id keyed_name="labs_gn_text_decoration" type="List">09B69BE6CB0440A2A2E21AEBB474F16B</source_id>
+    <value>inherit</value>
+   </Item>
+   <Item type="Value" id="5AD83F8BF137465BBE13A448FEB079AD" action="add">
+    <label xml:lang="en">underline</label>
+    <sort_order>10</sort_order>
+    <source_id keyed_name="labs_gn_text_decoration" type="List">09B69BE6CB0440A2A2E21AEBB474F16B</source_id>
+    <value>underline</value>
+   </Item>
+   <Item type="Value" id="8AEE16BD901E4FC786BA8B7928DB9DBC" action="add">
+    <label xml:lang="en">overline</label>
+    <sort_order>15</sort_order>
+    <source_id keyed_name="labs_gn_text_decoration" type="List">09B69BE6CB0440A2A2E21AEBB474F16B</source_id>
+    <value>overline</value>
+   </Item>
+   <Item type="Value" id="EBDD06AB52D24DAFA7BE0E690E90FEDB" action="add">
+    <label xml:lang="en">line-through</label>
+    <sort_order>20</sort_order>
+    <source_id keyed_name="labs_gn_text_decoration" type="List">09B69BE6CB0440A2A2E21AEBB474F16B</source_id>
+    <value>line-through</value>
+   </Item>
+   <Item type="Value" id="12EF54F6CF1F4D958977EE2D8F3C87A8" action="add">
+    <label xml:lang="en">blink</label>
+    <sort_order>25</sort_order>
+    <source_id keyed_name="labs_gn_text_decoration" type="List">09B69BE6CB0440A2A2E21AEBB474F16B</source_id>
+    <value>blink</value>
+   </Item>
+  </Relationships>
+ </Item>
+</AML>

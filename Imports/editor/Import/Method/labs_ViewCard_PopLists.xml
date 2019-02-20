@@ -1,0 +1,58 @@
+﻿<AML>
+ <Item type="Method" id="ED83AA45B8A14C948817B74834C829FF" action="add">
+  <comments>Method populates typeahead dropdown list fields from List items.</comments>
+  <execution_allowed_to keyed_name="Administrators" type="Identity">2618D6F5A90949BAA7E920D1B04C7EE1</execution_allowed_to>
+  <method_code><![CDATA[// function gets an Aras list item and populates the given field
+var populateList = function(list_name, field_name) {
+    // Get the field we want to populate dynamically
+    var dropdown = getFieldComponentByName(field_name);
+
+    // get the list and values of the specified list
+    var listItm = aras.IomInnovator.newItem("List", "get");
+    listItm.setAttribute("select", "id");
+    listItm.setProperty("name", list_name);
+
+    var itms = aras.IomInnovator.newItem("Value", "get");
+    itms.setAttribute("select", "value,label");
+    itms.setPropertyItem("source_id", listItm);
+    itms = itms.apply();
+
+    // List that will be passed into the dropdown control for typeahead functionality
+    listOfValues = [{
+        label: '',
+        value: ''
+    }];
+
+    // Add an entry to our list for each value
+    for (var i = 0, itmCount = itms.getItemCount(); i < itmCount; i++) {
+        var itm = itms.getItemByIndex(i);
+        listOfValues.push({
+            label: itm.getProperty("label"),
+            value: itm.getProperty("value")
+        });
+    }
+
+    // Pass this list into our dropdown field
+    dropdown.component.setState({
+        list: listOfValues
+    });
+};
+
+// content type
+populateList("labs_gn_content_type", "node_content_type");
+
+// font weight
+populateList("labs_gn_font_weight", "content_style_font_weight");
+
+// text decoration
+populateList("labs_gn_text_decoration", "content_style_text_decoration");
+
+// horizontal alignment
+populateList("labs_gn_horizontal_alignment", "content_style_h_alignment");
+
+// vertical alignment
+populateList("labs_gn_vertical_alignment", "content_style_v_align");]]></method_code>
+  <method_type>JavaScript</method_type>
+  <name>labs_ViewCard_PopLists</name>
+ </Item>
+</AML>

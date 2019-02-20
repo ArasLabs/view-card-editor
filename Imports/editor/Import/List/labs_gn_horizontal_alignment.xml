@@ -1,0 +1,25 @@
+﻿<AML>
+ <Item type="List" id="26D32BD01A134712B140DE72E8051FE6" action="add">
+  <name>labs_gn_horizontal_alignment</name>
+  <Relationships>
+   <Item type="Value" id="55E9F137C4A24F06BF78A00E20865677" action="add">
+    <label xml:lang="en">left</label>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="labs_gn_horizontal_alignment" type="List">26D32BD01A134712B140DE72E8051FE6</source_id>
+    <value>start</value>
+   </Item>
+   <Item type="Value" id="E27F74C1D4024D0AA1D5BCB03073D0D9" action="add">
+    <label xml:lang="en">middle</label>
+    <sort_order>256</sort_order>
+    <source_id keyed_name="labs_gn_horizontal_alignment" type="List">26D32BD01A134712B140DE72E8051FE6</source_id>
+    <value>middle</value>
+   </Item>
+   <Item type="Value" id="D8772ADBD1344584B3F41D50D4AEC036" action="add">
+    <label xml:lang="en">right</label>
+    <sort_order>384</sort_order>
+    <source_id keyed_name="labs_gn_horizontal_alignment" type="List">26D32BD01A134712B140DE72E8051FE6</source_id>
+    <value>end</value>
+   </Item>
+  </Relationships>
+ </Item>
+</AML>

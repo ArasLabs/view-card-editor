@@ -1,0 +1,45 @@
+﻿<AML>
+ <Item type="Method" id="82EEA798427D4E9E85C315C925B09AFA" action="add">
+  <comments>An onClick event that loads a search dialog for items of a selected ItemType.</comments>
+  <execution_allowed_to keyed_name="Administrators" type="Identity">2618D6F5A90949BAA7E920D1B04C7EE1</execution_allowed_to>
+  <method_code><![CDATA[// get itemtype we're searching for
+var itemtype_field = getFieldByName("preview_itemtype").getElementsByTagName("input")[0];
+
+if (itemtype_field.value === null || itemtype_field.value === undefined || itemtype_field === "") {
+    return alert("Please select an ItemType before selecting a root item.");
+}
+
+// onClick field event for Search button
+// Calls a search dialog and returns the search result
+var param = {
+    aras: top.aras,
+    itemtypeName: itemtype_field.value,
+    multiselect: false,
+    type: 'SearchDialog',
+    dialogHeight: 450,
+    dialogWidth: 700,
+    resizable: true
+};
+
+var searchedItem;
+var callback = function(dlgRes) {
+    if (!dlgRes) {
+        return;
+    }
+
+    searchedItem = dlgRes.item;
+    if (!searchedItem) {
+        return;
+    }
+    var keyed_name = top.aras.getKeyedNameEx(searchedItem);
+    var table = getFieldByName("preview_item").getElementsByTagName("input")[0];
+    table.setAttribute("value", keyed_name);
+};
+
+var wnd = top.aras.getMainWindow();
+wnd = wnd === top ? wnd.main : top;
+wnd.ArasModules.Dialog.show('iframe', param).promise.then(callback);]]></method_code>
+  <method_type>JavaScript</method_type>
+  <name>labs_SearchRootItem</name>
+ </Item>
+</AML>

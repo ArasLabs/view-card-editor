@@ -1,0 +1,1868 @@
+﻿<AML>
+ <Item type="Form" id="B15A43D5147D4B36B478A1EE9623A532" action="add">
+  <category_form>0</category_form>
+  <description>Custom editor with preview</description>
+  <height>234</height>
+  <stylesheet><![CDATA[../styles/default.css]]></stylesheet>
+  <width>699</width>
+  <name>labs_ViewCard</name>
+  <Relationships>
+   <Item type="Body" id="53E136820BA64688982491EF3AB60287" action="add">
+    <css>@import '../Modules/aras.innovator.GraphView/Styles/graphView.css';
+@import '../Modules/aras.innovator.GraphView/Styles/graphTooltip.css';
+@import '../Modules/aras.innovator.GraphView/Styles/expandSettingsMenu.css';
+
+#preview-table {
+    margin-top: 5px;
+}
+
+.sys_fn_card_preview {
+    width: 600px;
+    height: 600px;
+overflow: hidden;
+}
+
+#A6260256F9564425BBE3803E4EACD504span {
+    width: 600px;
+    height: 600px;
+}
+
+    #editor-tabs {
+        border-right: 1px solid #d6d6d6;
+        height: 600px;
+        width: 180px;
+        padding-top: 120px;
+    }
+    
+    .editor-tab-label {
+        font-family: tahoma, arial, helvetica, sans-serif;
+        font-size: 10pt;
+        font-weight: bold;
+        color: #000000;
+        margin-left: 5px;
+    }
+
+    .editor-tab {
+        background-color: #FFFFFF;
+        width: 180px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        border-right: 1px solid #d6d6d6;
+        cursor:pointer;
+    }
+
+    .editor-tab-active {
+        border-right: 1px solid #FFFFFF;
+        border-bottom: 1px solid #d6d6d6;
+        border-top: 1px solid #d6d6d6;
+        cursor: default;
+    }
+    
+    .indicator {
+    	height: 12px;
+        width: 10px;
+    }
+    
+    .editor-tab svg circle {
+    	stroke: red;
+        stroke-width: 2;
+        fill: white;
+    }
+    
+    .editor-tab-active svg circle {
+        stroke: red;
+        stroke-width: 2;
+        fill: red;
+    }
+
+#layout-editor {
+  border: 1px solid #000000;
+  border-collapse: collapse;
+}
+
+.default-cell {
+  padding-left: 5px;
+  border: 1px solid #000000;
+}
+
+.default-cell:hover {
+  background-color: #f5e7c9;
+}
+
+.selected-cell {
+ border: 2px solid #000000;
+  background-color: #f5e7c9;
+}
+</css>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="labs_ViewCard" type="Form">B15A43D5147D4B36B478A1EE9623A532</source_id>
+    <Relationships>
+     <Item type="Field" id="A6260256F9564425BBE3803E4EACD504" action="add">
+      <border_width>0</border_width>
+      <display_length_unit>px</display_length_unit>
+      <field_type>html</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <html_code><![CDATA[<div class="sys_f_label" style="font-family:tahoma, arial, helvetica, sans-serif;font-size:8pt;font-weight:bold;color:#000000;">Graph Preview</div>
+<div id="preview-box" style="border:1px solid #d6d6d6; height: 500px; width: 600px; padding: 20px;">
+<div id="graphToolbar" style="top: 25px;"></div>
+<div id="graphView" style="top: 55px;"></div>
+</div>]]></html_code>
+      <is_disabled>0</is_disabled>
+      <is_visible>0</is_visible>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <sort_order>640</sort_order>
+      <source_id keyed_name="53E136820BA64688982491EF3AB60287" type="Body">53E136820BA64688982491EF3AB60287</source_id>
+      <tab_stop>1</tab_stop>
+      <x>840</x>
+      <y>10</y>
+      <name>card_preview</name>
+     </Item>
+     <Item type="Field" id="88876442ACDB42EEB920483C4637A6C9" action="add">
+      <border_width>0</border_width>
+      <display_length>120</display_length>
+      <display_length_unit>px</display_length_unit>
+      <field_type>text</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>0</is_visible>
+      <label xml:lang="en">Color</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <sort_order>4480</sort_order>
+      <source_id keyed_name="53E136820BA64688982491EF3AB60287" type="Body">53E136820BA64688982491EF3AB60287</source_id>
+      <tab_stop>1</tab_stop>
+      <x>410</x>
+      <y>210</y>
+      <name>con_style_arrow_color</name>
+      <Relationships>
+       <Item type="Field Event" id="EEA0B85064874B7D8E9C5136DDA00C4E" action="add">
+        <field_event>onchange</field_event>
+        <related_id keyed_name="labs_ViewCard_UpdateTemplate" type="Method">
+         <Item type="Method" action="get" select="id">
+          <name>labs_ViewCard_UpdateTemplate</name>
+         </Item>
+        </related_id>
+        <sort_order>128</sort_order>
+        <source_id keyed_name="con_style_arrow_color" type="Field">88876442ACDB42EEB920483C4637A6C9</source_id>
+       </Item>
+      </Relationships>
+     </Item>
+     <Item type="Field" id="3FA4654835574BCDB5571C892556AB9B" action="add">
+      <border_width>0</border_width>
+      <display_length>60</display_length>
+      <display_length_unit>px</display_length_unit>
+      <field_type>text</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>0</is_visible>
+      <label xml:lang="en">Height</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <sort_order>4224</sort_order>
+      <source_id keyed_name="53E136820BA64688982491EF3AB60287" type="Body">53E136820BA64688982491EF3AB60287</source_id>
+      <tab_stop>1</tab_stop>
+      <x>210</x>
+      <y>210</y>
+      <name>con_style_arrow_height</name>
+      <Relationships>
+       <Item type="Field Event" id="7223F0F62DAA431FA90B48B28B4F2BDB" action="add">
+        <field_event>onchange</field_event>
+        <related_id keyed_name="labs_ViewCard_UpdateTemplate" type="Method">
+         <Item type="Method" action="get" select="id">
+          <name>labs_ViewCard_UpdateTemplate</name>
+         </Item>
+        </related_id>
+        <sort_order>128</sort_order>
+        <source_id keyed_name="con_style_arrow_height" type="Field">3FA4654835574BCDB5571C892556AB9B</source_id>
+       </Item>
+      </Relationships>
+     </Item>
+     <Item type="Field" id="42C67FCAD96E4527ADB41C048F13143D" action="add">
+      <border_width>0</border_width>
+      <display_length>60</display_length>
+      <display_length_unit>px</display_length_unit>
+      <field_type>text</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>0</is_visible>
+      <label xml:lang="en">Width</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <sort_order>4352</sort_order>
+      <source_id keyed_name="53E136820BA64688982491EF3AB60287" type="Body">53E136820BA64688982491EF3AB60287</source_id>
+      <tab_stop>1</tab_stop>
+      <x>310</x>
+      <y>210</y>
+      <name>con_style_arrow_width</name>
+      <Relationships>
+       <Item type="Field Event" id="1CBE97D86F85425B924EFC71C489095D" action="add">
+        <field_event>onchange</field_event>
+        <related_id keyed_name="labs_ViewCard_UpdateTemplate" type="Method">
+         <Item type="Method" action="get" select="id">
+          <name>labs_ViewCard_UpdateTemplate</name>
+         </Item>
+        </related_id>
+        <sort_order>128</sort_order>
+        <source_id keyed_name="con_style_arrow_width" type="Field">42C67FCAD96E4527ADB41C048F13143D</source_id>
+       </Item>
+      </Relationships>
+     </Item>
+     <Item type="Field" id="7C16E335B2EA41E6ABBA328D4C7B9E9E" action="add">
+      <border_width>0</border_width>
+      <display_length_unit>px</display_length_unit>
+      <field_type>label</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>12pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>0</is_visible>
+      <label xml:lang="en">Arrowhead</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <sort_order>4096</sort_order>
+      <source_id keyed_name="53E136820BA64688982491EF3AB60287" type="Body">53E136820BA64688982491EF3AB60287</source_id>
+      <tab_stop>1</tab_stop>
+      <x>210</x>
+      <y>170</y>
+      <name>con_style_arrowhead</name>
+     </Item>
+     <Item type="Field" id="3EA4EBD70FBA4E7B9B74C0275650AD67" action="add">
+      <border_width>0</border_width>
+      <display_length>120</display_length>
+      <display_length_unit>px</display_length_unit>
+      <field_type>text</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>0</is_visible>
+      <label xml:lang="en">Color</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <sort_order>3968</sort_order>
+      <source_id keyed_name="53E136820BA64688982491EF3AB60287" type="Body">53E136820BA64688982491EF3AB60287</source_id>
+      <tab_stop>1</tab_stop>
+      <x>310</x>
+      <y>110</y>
+      <name>con_style_color</name>
+      <Relationships>
+       <Item type="Field Event" id="4621FE94B5E74F738D340E7BF2E858F5" action="add">
+        <field_event>onchange</field_event>
+        <related_id keyed_name="labs_ViewCard_UpdateTemplate" type="Method">
+         <Item type="Method" action="get" select="id">
+          <name>labs_ViewCard_UpdateTemplate</name>
+         </Item>
+        </related_id>
+        <sort_order>128</sort_order>
+        <source_id keyed_name="con_style_color" type="Field">3EA4EBD70FBA4E7B9B74C0275650AD67</source_id>
+       </Item>
+      </Relationships>
+     </Item>
+     <Item type="Field" id="0DB4A4F8A68D44A7AD0135D417B24870" action="add">
+      <border_width>0</border_width>
+      <display_length_unit>px</display_length_unit>
+      <field_type>label</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>12pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>0</is_visible>
+      <label xml:lang="en">General</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <sort_order>3712</sort_order>
+      <source_id keyed_name="53E136820BA64688982491EF3AB60287" type="Body">53E136820BA64688982491EF3AB60287</source_id>
+      <tab_stop>1</tab_stop>
+      <x>210</x>
+      <y>70</y>
+      <name>con_style_general</name>
+     </Item>
+     <Item type="Field" id="3E6771B4B0AD458D8CE61FCC6C8740C7" action="add">
+      <border_width>0</border_width>
+      <display_length>60</display_length>
+      <display_length_unit>px</display_length_unit>
+      <field_type>text</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>0</is_visible>
+      <label xml:lang="en">Weight</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <sort_order>3840</sort_order>
+      <source_id keyed_name="53E136820BA64688982491EF3AB60287" type="Body">53E136820BA64688982491EF3AB60287</source_id>
+      <tab_stop>1</tab_stop>
+      <x>210</x>
+      <y>110</y>
+      <name>con_style_weight</name>
+      <Relationships>
+       <Item type="Field Event" id="FEF876898C294D7B9B8170337FD92503" action="add">
+        <field_event>onchange</field_event>
+        <related_id keyed_name="labs_ViewCard_UpdateTemplate" type="Method">
+         <Item type="Method" action="get" select="id">
+          <name>labs_ViewCard_UpdateTemplate</name>
+         </Item>
+        </related_id>
+        <sort_order>128</sort_order>
+        <source_id keyed_name="con_style_weight" type="Field">3E6771B4B0AD458D8CE61FCC6C8740C7</source_id>
+       </Item>
+      </Relationships>
+     </Item>
+     <Item type="Field" id="117143A59E8448D6A934CCA9A78ED368" action="add">
+      <border_width>0</border_width>
+      <display_length_unit>px</display_length_unit>
+      <field_type>label</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>12pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>0</is_visible>
+      <label xml:lang="en">Alignment</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <sort_order>7552</sort_order>
+      <source_id keyed_name="53E136820BA64688982491EF3AB60287" type="Body">53E136820BA64688982491EF3AB60287</source_id>
+      <tab_stop>1</tab_stop>
+      <x>210</x>
+      <y>220</y>
+      <name>content_style_alignment</name>
+     </Item>
+     <Item type="Field" id="5716279080344E788D695258AFE2395B" action="add">
+      <border_width>0</border_width>
+      <display_length_unit>px</display_length_unit>
+      <field_type>label</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>12pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>0</is_visible>
+      <label xml:lang="en">Font Style</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <sort_order>7424</sort_order>
+      <source_id keyed_name="53E136820BA64688982491EF3AB60287" type="Body">53E136820BA64688982491EF3AB60287</source_id>
+      <tab_stop>1</tab_stop>
+      <x>210</x>
+      <y>70</y>
+      <name>content_style_font</name>
+      <Relationships>
+       <Item type="Field Event" id="C11EE73F53D94677B0FA6E97E83775A8" action="add">
+        <field_event>onchange</field_event>
+        <related_id keyed_name="labs_ViewCard_UpdateTemplate" type="Method">
+         <Item type="Method" action="get" select="id">
+          <name>labs_ViewCard_UpdateTemplate</name>
+         </Item>
+        </related_id>
+        <sort_order>128</sort_order>
+        <source_id keyed_name="content_style_font" type="Field">5716279080344E788D695258AFE2395B</source_id>
+       </Item>
+      </Relationships>
+     </Item>
+     <Item type="Field" id="A1789D092F1F40A498643BD1C9CB982D" action="add">
+      <border_width>0</border_width>
+      <display_length>120</display_length>
+      <display_length_unit>px</display_length_unit>
+      <field_type>text</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>0</is_visible>
+      <label xml:lang="en">Font Color</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <sort_order>6016</sort_order>
+      <source_id keyed_name="53E136820BA64688982491EF3AB60287" type="Body">53E136820BA64688982491EF3AB60287</source_id>
+      <tab_stop>1</tab_stop>
+      <x>210</x>
+      <y>160</y>
+      <name>content_style_font_color</name>
+      <Relationships>
+       <Item type="Field Event" id="5B550B81C3F0463CA96A6C7E4C21560E" action="add">
+        <field_event>onchange</field_event>
+        <related_id keyed_name="labs_ViewCard_UpdateTemplate" type="Method">
+         <Item type="Method" action="get" select="id">
+          <name>labs_ViewCard_UpdateTemplate</name>
+         </Item>
+        </related_id>
+        <sort_order>128</sort_order>
+        <source_id keyed_name="content_style_font_color" type="Field">A1789D092F1F40A498643BD1C9CB982D</source_id>
+       </Item>
+      </Relationships>
+     </Item>
+     <Item type="Field" id="9F073C950E3C45F1A68CDF5D68E4D48F" action="add">
+      <border_width>0</border_width>
+      <display_length>120</display_length>
+      <display_length_unit>px</display_length_unit>
+      <field_type>text</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>0</is_visible>
+      <label xml:lang="en">Font Family</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <sort_order>5632</sort_order>
+      <source_id keyed_name="53E136820BA64688982491EF3AB60287" type="Body">53E136820BA64688982491EF3AB60287</source_id>
+      <tab_stop>1</tab_stop>
+      <x>210</x>
+      <y>110</y>
+      <name>content_style_font_family</name>
+      <Relationships>
+       <Item type="Field Event" id="893323C3AE854B37A54589FB235DBA7E" action="add">
+        <field_event>onchange</field_event>
+        <related_id keyed_name="labs_ViewCard_UpdateTemplate" type="Method">
+         <Item type="Method" action="get" select="id">
+          <name>labs_ViewCard_UpdateTemplate</name>
+         </Item>
+        </related_id>
+        <sort_order>128</sort_order>
+        <source_id keyed_name="content_style_font_family" type="Field">9F073C950E3C45F1A68CDF5D68E4D48F</source_id>
+       </Item>
+      </Relationships>
+     </Item>
+     <Item type="Field" id="B73F763C7D5C4D0480A198056D63F9A0" action="add">
+      <border_width>0</border_width>
+      <display_length>60</display_length>
+      <display_length_unit>px</display_length_unit>
+      <field_type>text</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>0</is_visible>
+      <label xml:lang="en">Font Size</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <sort_order>5760</sort_order>
+      <source_id keyed_name="53E136820BA64688982491EF3AB60287" type="Body">53E136820BA64688982491EF3AB60287</source_id>
+      <tab_stop>1</tab_stop>
+      <x>370</x>
+      <y>110</y>
+      <name>content_style_font_size</name>
+      <Relationships>
+       <Item type="Field Event" id="D96CDE1486CF4D38BCF8A8C3CDC16596" action="add">
+        <field_event>onchange</field_event>
+        <related_id keyed_name="labs_ViewCard_UpdateTemplate" type="Method">
+         <Item type="Method" action="get" select="id">
+          <name>labs_ViewCard_UpdateTemplate</name>
+         </Item>
+        </related_id>
+        <sort_order>128</sort_order>
+        <source_id keyed_name="content_style_font_size" type="Field">B73F763C7D5C4D0480A198056D63F9A0</source_id>
+       </Item>
+      </Relationships>
+     </Item>
+     <Item type="Field" id="A8F486604BB94A37A9237A062E6D40BB" action="add">
+      <border_width>0</border_width>
+      <display_length>120</display_length>
+      <display_length_unit>px</display_length_unit>
+      <field_type>dropdown</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>0</is_visible>
+      <label xml:lang="en">Font Weight</label>
+      <label_position>top</label_position>
+      <list_no_blank>1</list_no_blank>
+      <sort_order>5888</sort_order>
+      <source_id keyed_name="53E136820BA64688982491EF3AB60287" type="Body">53E136820BA64688982491EF3AB60287</source_id>
+      <tab_stop>1</tab_stop>
+      <x>470</x>
+      <y>110</y>
+      <name>content_style_font_weight</name>
+      <Relationships>
+       <Item type="Field Event" id="19A05B3C86D14883B8A723DDC82627B0" action="add">
+        <field_event>onchange</field_event>
+        <related_id keyed_name="labs_ViewCard_UpdateTemplate" type="Method">
+         <Item type="Method" action="get" select="id">
+          <name>labs_ViewCard_UpdateTemplate</name>
+         </Item>
+        </related_id>
+        <sort_order>128</sort_order>
+        <source_id keyed_name="content_style_font_weight" type="Field">A8F486604BB94A37A9237A062E6D40BB</source_id>
+       </Item>
+      </Relationships>
+     </Item>
+     <Item type="Field" id="BC40FAB2DD2D4E8D94C3570160DAE646" action="add">
+      <border_width>0</border_width>
+      <display_length>120</display_length>
+      <display_length_unit>px</display_length_unit>
+      <field_type>dropdown</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>0</is_visible>
+      <label xml:lang="en">Horizontal Align</label>
+      <label_position>top</label_position>
+      <list_no_blank>1</list_no_blank>
+      <sort_order>6272</sort_order>
+      <source_id keyed_name="53E136820BA64688982491EF3AB60287" type="Body">53E136820BA64688982491EF3AB60287</source_id>
+      <tab_stop>1</tab_stop>
+      <x>210</x>
+      <y>260</y>
+      <name>content_style_h_alignment</name>
+      <Relationships>
+       <Item type="Field Event" id="69F696C475A74AE9807FF3DE3CF29CA2" action="add">
+        <field_event>onchange</field_event>
+        <related_id keyed_name="labs_ViewCard_UpdateTemplate" type="Method">
+         <Item type="Method" action="get" select="id">
+          <name>labs_ViewCard_UpdateTemplate</name>
+         </Item>
+        </related_id>
+        <sort_order>128</sort_order>
+        <source_id keyed_name="content_style_h_alignment" type="Field">BC40FAB2DD2D4E8D94C3570160DAE646</source_id>
+       </Item>
+      </Relationships>
+     </Item>
+     <Item type="Field" id="D68DA2A7280444FC95D82FAF670CBEE5" action="add">
+      <border_width>0</border_width>
+      <display_length>120</display_length>
+      <display_length_unit>px</display_length_unit>
+      <field_type>dropdown</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>0</is_visible>
+      <label xml:lang="en">Text Decoration</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <sort_order>6144</sort_order>
+      <source_id keyed_name="53E136820BA64688982491EF3AB60287" type="Body">53E136820BA64688982491EF3AB60287</source_id>
+      <tab_stop>1</tab_stop>
+      <x>370</x>
+      <y>160</y>
+      <name>content_style_text_decoration</name>
+      <Relationships>
+       <Item type="Field Event" id="C3E275FAC41844F2BF1E632A6E5F1FB1" action="add">
+        <field_event>onchange</field_event>
+        <related_id keyed_name="labs_ViewCard_UpdateTemplate" type="Method">
+         <Item type="Method" action="get" select="id">
+          <name>labs_ViewCard_UpdateTemplate</name>
+         </Item>
+        </related_id>
+        <sort_order>128</sort_order>
+        <source_id keyed_name="content_style_text_decoration" type="Field">D68DA2A7280444FC95D82FAF670CBEE5</source_id>
+       </Item>
+      </Relationships>
+     </Item>
+     <Item type="Field" id="9A91590371204C8FB467A0E32BFCA488" action="add">
+      <border_width>0</border_width>
+      <display_length>120</display_length>
+      <display_length_unit>px</display_length_unit>
+      <field_type>dropdown</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>0</is_visible>
+      <label xml:lang="en">Vertical Align</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <sort_order>6400</sort_order>
+      <source_id keyed_name="53E136820BA64688982491EF3AB60287" type="Body">53E136820BA64688982491EF3AB60287</source_id>
+      <tab_stop>1</tab_stop>
+      <x>370</x>
+      <y>260</y>
+      <name>content_style_v_align</name>
+      <Relationships>
+       <Item type="Field Event" id="C06E27DC87ED401EB7FBA9BC5C8BA8EB" action="add">
+        <field_event>onchange</field_event>
+        <related_id keyed_name="labs_ViewCard_UpdateTemplate" type="Method">
+         <Item type="Method" action="get" select="id">
+          <name>labs_ViewCard_UpdateTemplate</name>
+         </Item>
+        </related_id>
+        <sort_order>128</sort_order>
+        <source_id keyed_name="content_style_v_align" type="Field">9A91590371204C8FB467A0E32BFCA488</source_id>
+       </Item>
+      </Relationships>
+     </Item>
+     <Item type="Field" id="0BC3C13AF109465C85AAE15CCF30D851" action="add">
+      <border_width>0</border_width>
+      <display_length_unit>px</display_length_unit>
+      <field_type>textarea</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>1</is_visible>
+      <label xml:lang="en">Description</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <propertytype_id keyed_name="description" type="Property">208C2E5C0D5E4A6C849524E25E017146</propertytype_id>
+      <sort_order>6528</sort_order>
+      <source_id keyed_name="53E136820BA64688982491EF3AB60287" type="Body">53E136820BA64688982491EF3AB60287</source_id>
+      <tab_index>3200</tab_index>
+      <tab_stop>1</tab_stop>
+      <textarea_cols>360</textarea_cols>
+      <textarea_rows>120</textarea_rows>
+      <x>210</x>
+      <y>70</y>
+      <name>description</name>
+     </Item>
+     <Item type="Field" id="F7DE2AFB84154CDCA095C9836B8F332F" action="add">
+      <border_width>0</border_width>
+      <display_length_unit>px</display_length_unit>
+      <field_type>html</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <html_code><![CDATA[<div id="editor-tabs">
+    <div id="detail-tab" class="editor-tab">
+        <svg id="detail-indicator" class="indicator">
+            <circle cx="5" cy="7" r="4" />
+        </svg>
+        <span class="editor-tab-label">Details</span>
+    </div>
+    <div id="node-style-tab" class="editor-tab">
+        <svg id="node-style-indicator" class="indicator">
+            <circle cx="5" cy="7" r="4" />
+        </svg>
+        <span class="editor-tab-label">Node Style</span>
+    </div>
+
+    <div id="connector-style-tab" class="editor-tab">
+        <svg id="connector-style-indicator" class="indicator">
+            <circle cx="5" cy="7" r="4" />
+        </svg>
+        <span class="editor-tab-label">Connector Style</span>
+    </div>
+
+    <div id="node-content-tab" class="editor-tab">
+        <svg id="node-content-indicator" class="indicator">
+            <circle cx="5" cy="7" r="4" />
+        </svg>
+        <span class="editor-tab-label">Node Content</span>
+    </div>
+
+    <div id="content-style-tab" class="editor-tab">
+        <svg id="content-style-indicator" class="indicator">
+            <circle cx="5" cy="7" r="4" />
+        </svg>
+        <span class="editor-tab-label">Content Style</span>
+    </div>
+
+    <div id="template-tab" class="editor-tab">
+        <svg id="template-indicator" class="indicator">
+            <circle cx="5" cy="7" r="4" />
+        </svg>
+        <span class="editor-tab-label">Template</span>
+    </div>
+
+    <div id="preview-tab" class="editor-tab">
+        <svg id="template-indicator" class="indicator">
+            <circle cx="5" cy="7" r="4" />
+        </svg>
+        <span class="editor-tab-label">Previewer</span>
+    </div>
+</div>]]></html_code>
+      <is_disabled>0</is_disabled>
+      <is_visible>1</is_visible>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <sort_order>896</sort_order>
+      <source_id keyed_name="53E136820BA64688982491EF3AB60287" type="Body">53E136820BA64688982491EF3AB60287</source_id>
+      <tab_stop>1</tab_stop>
+      <x>0</x>
+      <y>0</y>
+      <name>editor_tabs</name>
+     </Item>
+     <Item type="Field" id="F7A7A5A9482B486BA359464C7A6DF040" action="add">
+      <border_width>0</border_width>
+      <display_length_unit>px</display_length_unit>
+      <field_type>html</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <html_code><![CDATA[<span id="ITEM_INFO_INTERNAL_SPAN"/>
+<script>
+  populate_ITEM_INFO_INTERNAL_SPAN = function()
+  {
+    document.getElementById("ITEM_INFO_INTERNAL_SPAN").innerHTML = aras.uiDrawItemInfoTable(document.itemType);
+    //aras.uiPopulateInfoTableWithItem(document.item, document);
+    var tbl = document.getElementById("itemInfoTable");
+    tbl.style.display = "none";
+    var title = document.getElementById("label_span");
+    title.innerHTML = "View Card Editor";
+  }
+
+window.addEventListener("load", populate_ITEM_INFO_INTERNAL_SPAN);
+
+</script>]]></html_code>
+      <is_disabled>0</is_disabled>
+      <is_visible>1</is_visible>
+      <list_no_blank>0</list_no_blank>
+      <sort_order>512</sort_order>
+      <source_id keyed_name="53E136820BA64688982491EF3AB60287" type="Body">53E136820BA64688982491EF3AB60287</source_id>
+      <tab_stop>1</tab_stop>
+      <x>8</x>
+      <y>11</y>
+      <name>item_info</name>
+     </Item>
+     <Item type="Field" id="4BAC3F92C2B04FF99A9AB60A96B3599D" action="add">
+      <bg_color>beige  </bg_color>
+      <border_width>0</border_width>
+      <display_length>240</display_length>
+      <display_length_unit>px</display_length_unit>
+      <field_type>text</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>1</is_visible>
+      <label xml:lang="en">Name</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <propertytype_id keyed_name="name" type="Property">33EC042413AD49AA85A22582881FAFD4</propertytype_id>
+      <sort_order>128</sort_order>
+      <source_id keyed_name="53E136820BA64688982491EF3AB60287" type="Body">53E136820BA64688982491EF3AB60287</source_id>
+      <tab_index>3072</tab_index>
+      <tab_stop>1</tab_stop>
+      <x>210</x>
+      <y>10</y>
+      <name>name</name>
+     </Item>
+     <Item type="Field" id="3B3D2CB86AD840B6B30599A8664B458B" action="add">
+      <border_width>0</border_width>
+      <display_length_unit>px</display_length_unit>
+      <field_type>label</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>12pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>0</is_visible>
+      <label xml:lang="en">Content</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <sort_order>7296</sort_order>
+      <source_id keyed_name="53E136820BA64688982491EF3AB60287" type="Body">53E136820BA64688982491EF3AB60287</source_id>
+      <tab_stop>1</tab_stop>
+      <x>210</x>
+      <y>170</y>
+      <name>node_content</name>
+     </Item>
+     <Item type="Field" id="E17E9506239F44209F342EF33603D77D" action="add">
+      <border_width>0</border_width>
+      <display_length>160</display_length>
+      <display_length_unit>px</display_length_unit>
+      <field_type>text</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>0</is_visible>
+      <label xml:lang="en">Content Binding</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <sort_order>5504</sort_order>
+      <source_id keyed_name="53E136820BA64688982491EF3AB60287" type="Body">53E136820BA64688982491EF3AB60287</source_id>
+      <tab_stop>1</tab_stop>
+      <x>210</x>
+      <y>210</y>
+      <name>node_content_binding</name>
+      <Relationships>
+       <Item type="Field Event" id="F7952957138F402698767B2F5E2A4ECE" action="add">
+        <field_event>onchange</field_event>
+        <related_id keyed_name="labs_ViewCard_UpdateTemplate" type="Method">
+         <Item type="Method" action="get" select="id">
+          <name>labs_ViewCard_UpdateTemplate</name>
+         </Item>
+        </related_id>
+        <sort_order>128</sort_order>
+        <source_id keyed_name="node_content_binding" type="Field">E17E9506239F44209F342EF33603D77D</source_id>
+       </Item>
+      </Relationships>
+     </Item>
+     <Item type="Field" id="4E57530A2F354A088298CE4A25F6A363" action="add">
+      <border_width>0</border_width>
+      <display_length_unit>px</display_length_unit>
+      <field_type>label</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>12pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>0</is_visible>
+      <label xml:lang="en">Dimensions</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <sort_order>4864</sort_order>
+      <source_id keyed_name="53E136820BA64688982491EF3AB60287" type="Body">53E136820BA64688982491EF3AB60287</source_id>
+      <tab_stop>1</tab_stop>
+      <x>210</x>
+      <y>70</y>
+      <name>node_content_cell</name>
+     </Item>
+     <Item type="Field" id="3ADF9F9D31A14AFDB61172E76926176D" action="add">
+      <border_width>0</border_width>
+      <display_length_unit>px</display_length_unit>
+      <field_type>button</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>0</is_visible>
+      <label xml:lang="en">Add Column</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <sort_order>7680</sort_order>
+      <source_id keyed_name="53E136820BA64688982491EF3AB60287" type="Body">53E136820BA64688982491EF3AB60287</source_id>
+      <tab_stop>1</tab_stop>
+      <x>310</x>
+      <y>270</y>
+      <name>node_content_col_btn</name>
+      <Relationships>
+       <Item type="Field Event" id="A478BCEBB19E4617900A10BD1E3ED3FF" action="add">
+        <field_event>onclick</field_event>
+        <related_id keyed_name="labs_ViewCard_EditTable" type="Method">
+         <Item type="Method" action="get" select="id">
+          <name>labs_ViewCard_EditTable</name>
+         </Item>
+        </related_id>
+        <sort_order>128</sort_order>
+        <source_id keyed_name="node_content_col_btn" type="Field">3ADF9F9D31A14AFDB61172E76926176D</source_id>
+       </Item>
+      </Relationships>
+     </Item>
+     <Item type="Field" id="0623961CF59B4BE98E2CBA97AE8A16D7" action="add">
+      <border_width>0</border_width>
+      <display_length>60</display_length>
+      <display_length_unit>px</display_length_unit>
+      <field_type>text</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>0</is_visible>
+      <label xml:lang="en">Column Width</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <sort_order>5248</sort_order>
+      <source_id keyed_name="53E136820BA64688982491EF3AB60287" type="Body">53E136820BA64688982491EF3AB60287</source_id>
+      <tab_stop>1</tab_stop>
+      <x>310</x>
+      <y>110</y>
+      <name>node_content_col_width</name>
+      <Relationships>
+       <Item type="Field Event" id="AA777A5648784ED8A2844120C6C91E0B" action="add">
+        <field_event>onchange</field_event>
+        <related_id keyed_name="labs_ViewCard_UpdateTemplate" type="Method">
+         <Item type="Method" action="get" select="id">
+          <name>labs_ViewCard_UpdateTemplate</name>
+         </Item>
+        </related_id>
+        <sort_order>128</sort_order>
+        <source_id keyed_name="node_content_col_width" type="Field">0623961CF59B4BE98E2CBA97AE8A16D7</source_id>
+       </Item>
+      </Relationships>
+     </Item>
+     <Item type="Field" id="400E4892D86440FB803F6669F52E5659" action="add">
+      <border_width>0</border_width>
+      <display_length_unit>px</display_length_unit>
+      <field_type>button</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>0</is_visible>
+      <label xml:lang="en">Remove Column</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <sort_order>8064</sort_order>
+      <source_id keyed_name="53E136820BA64688982491EF3AB60287" type="Body">53E136820BA64688982491EF3AB60287</source_id>
+      <tab_stop>1</tab_stop>
+      <x>545</x>
+      <y>270</y>
+      <name>node_content_rem_col_btn</name>
+      <Relationships>
+       <Item type="Field Event" id="F51A0F973DBB471395061DE9FE96C5FF" action="add">
+        <field_event>onclick</field_event>
+        <related_id keyed_name="labs_ViewCard_EditTable" type="Method">
+         <Item type="Method" action="get" select="id">
+          <name>labs_ViewCard_EditTable</name>
+         </Item>
+        </related_id>
+        <sort_order>128</sort_order>
+        <source_id keyed_name="node_content_rem_col_btn" type="Field">400E4892D86440FB803F6669F52E5659</source_id>
+       </Item>
+      </Relationships>
+     </Item>
+     <Item type="Field" id="A69BFCDACC2049A1A8E88F1576A732B2" action="add">
+      <border_width>0</border_width>
+      <display_length_unit>px</display_length_unit>
+      <field_type>button</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>0</is_visible>
+      <label xml:lang="en">Remove Row</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <sort_order>7936</sort_order>
+      <source_id keyed_name="53E136820BA64688982491EF3AB60287" type="Body">53E136820BA64688982491EF3AB60287</source_id>
+      <tab_stop>1</tab_stop>
+      <x>425</x>
+      <y>270</y>
+      <name>node_content_rem_row_btn</name>
+      <Relationships>
+       <Item type="Field Event" id="0B89E27FA8934F62888EA0071CADF932" action="add">
+        <field_event>onclick</field_event>
+        <related_id keyed_name="labs_ViewCard_EditTable" type="Method">
+         <Item type="Method" action="get" select="id">
+          <name>labs_ViewCard_EditTable</name>
+         </Item>
+        </related_id>
+        <sort_order>128</sort_order>
+        <source_id keyed_name="node_content_rem_row_btn" type="Field">A69BFCDACC2049A1A8E88F1576A732B2</source_id>
+       </Item>
+      </Relationships>
+     </Item>
+     <Item type="Field" id="F8A98CEAFBEC4D55974E8D8D6491074A" action="add">
+      <border_width>0</border_width>
+      <display_length_unit>px</display_length_unit>
+      <field_type>button</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>0</is_visible>
+      <label xml:lang="en">Add Row</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <sort_order>7808</sort_order>
+      <source_id keyed_name="53E136820BA64688982491EF3AB60287" type="Body">53E136820BA64688982491EF3AB60287</source_id>
+      <tab_stop>1</tab_stop>
+      <x>210</x>
+      <y>270</y>
+      <name>node_content_row_btn</name>
+      <Relationships>
+       <Item type="Field Event" id="531D18A6E35849E89C44A5939A1DEB8E" action="add">
+        <field_event>onclick</field_event>
+        <related_id keyed_name="labs_ViewCard_EditTable" type="Method">
+         <Item type="Method" action="get" select="id">
+          <name>labs_ViewCard_EditTable</name>
+         </Item>
+        </related_id>
+        <sort_order>128</sort_order>
+        <source_id keyed_name="node_content_row_btn" type="Field">F8A98CEAFBEC4D55974E8D8D6491074A</source_id>
+       </Item>
+      </Relationships>
+     </Item>
+     <Item type="Field" id="5D73800621314E2F82D2B71AD165539B" action="add">
+      <border_width>0</border_width>
+      <display_length>60</display_length>
+      <display_length_unit>px</display_length_unit>
+      <field_type>text</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>0</is_visible>
+      <label xml:lang="en">Row Height</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <sort_order>5120</sort_order>
+      <source_id keyed_name="53E136820BA64688982491EF3AB60287" type="Body">53E136820BA64688982491EF3AB60287</source_id>
+      <tab_stop>1</tab_stop>
+      <x>210</x>
+      <y>110</y>
+      <name>node_content_row_height</name>
+      <Relationships>
+       <Item type="Field Event" id="566649519C3E40ABA467BD8DAF87755A" action="add">
+        <field_event>onchange</field_event>
+        <related_id keyed_name="labs_ViewCard_UpdateTemplate" type="Method">
+         <Item type="Method" action="get" select="id">
+          <name>labs_ViewCard_UpdateTemplate</name>
+         </Item>
+        </related_id>
+        <sort_order>128</sort_order>
+        <source_id keyed_name="node_content_row_height" type="Field">5D73800621314E2F82D2B71AD165539B</source_id>
+       </Item>
+      </Relationships>
+     </Item>
+     <Item type="Field" id="5E3AE36B9D3A43EC9DEBD1B5667DC580" action="add">
+      <border_width>0</border_width>
+      <display_length_unit>px</display_length_unit>
+      <field_type>html</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <html_code><![CDATA[<div id="preview-table">
+<table id="layout-editor"></table> 
+</div>
+<br/>
+<em>Note: Preview is scaled to 2X node dimensions.</em>]]></html_code>
+      <is_disabled>0</is_disabled>
+      <is_visible>0</is_visible>
+      <label xml:lang="en">Content Table Preview</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <sort_order>4736</sort_order>
+      <source_id keyed_name="53E136820BA64688982491EF3AB60287" type="Body">53E136820BA64688982491EF3AB60287</source_id>
+      <tab_stop>1</tab_stop>
+      <x>840</x>
+      <y>10</y>
+      <name>node_content_table</name>
+     </Item>
+     <Item type="Field" id="4F37BF68C3D24197AB9D184CF78E4771" action="add">
+      <border_width>0</border_width>
+      <display_length>120</display_length>
+      <display_length_unit>px</display_length_unit>
+      <field_type>dropdown</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>0</is_visible>
+      <label xml:lang="en">Content Type</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <sort_order>5376</sort_order>
+      <source_id keyed_name="53E136820BA64688982491EF3AB60287" type="Body">53E136820BA64688982491EF3AB60287</source_id>
+      <tab_stop>1</tab_stop>
+      <x>410</x>
+      <y>210</y>
+      <name>node_content_type</name>
+      <Relationships>
+       <Item type="Field Event" id="6A873011D7EE417494AE64840C621530" action="add">
+        <field_event>onchange</field_event>
+        <related_id keyed_name="labs_ViewCard_UpdateTemplate" type="Method">
+         <Item type="Method" action="get" select="id">
+          <name>labs_ViewCard_UpdateTemplate</name>
+         </Item>
+        </related_id>
+        <sort_order>128</sort_order>
+        <source_id keyed_name="node_content_type" type="Field">4F37BF68C3D24197AB9D184CF78E4771</source_id>
+       </Item>
+      </Relationships>
+     </Item>
+     <Item type="Field" id="3D3E1D31F2D340EEAD7DB73FE1C24FFD" action="add">
+      <border_width>0</border_width>
+      <display_length>120</display_length>
+      <display_length_unit>px</display_length_unit>
+      <field_type>text</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>0</is_visible>
+      <label xml:lang="en">Background</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <sort_order>3584</sort_order>
+      <source_id keyed_name="53E136820BA64688982491EF3AB60287" type="Body">53E136820BA64688982491EF3AB60287</source_id>
+      <tab_stop>1</tab_stop>
+      <x>410</x>
+      <y>110</y>
+      <name>node_style_bg_color</name>
+      <Relationships>
+       <Item type="Field Event" id="89CCA27741BB4981B962C18D0E0DC29B" action="add">
+        <field_event>onchange</field_event>
+        <related_id keyed_name="labs_ViewCard_UpdateTemplate" type="Method">
+         <Item type="Method" action="get" select="id">
+          <name>labs_ViewCard_UpdateTemplate</name>
+         </Item>
+        </related_id>
+        <sort_order>128</sort_order>
+        <source_id keyed_name="node_style_bg_color" type="Field">3D3E1D31F2D340EEAD7DB73FE1C24FFD</source_id>
+       </Item>
+      </Relationships>
+     </Item>
+     <Item type="Field" id="00AFE483B7B141D3A4AC836A528FCE14" action="add">
+      <border_width>0</border_width>
+      <display_length_unit>px</display_length_unit>
+      <field_type>label</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>12pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>0</is_visible>
+      <label xml:lang="en">Border</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <sort_order>2304</sort_order>
+      <source_id keyed_name="53E136820BA64688982491EF3AB60287" type="Body">53E136820BA64688982491EF3AB60287</source_id>
+      <tab_stop>1</tab_stop>
+      <x>210</x>
+      <y>270</y>
+      <name>node_style_border</name>
+     </Item>
+     <Item type="Field" id="29BA724AB5C045BD81B4A3FBBBDC0FFD" action="add">
+      <border_width>0</border_width>
+      <display_length>120</display_length>
+      <display_length_unit>px</display_length_unit>
+      <field_type>text</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>0</is_visible>
+      <label xml:lang="en">Color</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <sort_order>2688</sort_order>
+      <source_id keyed_name="53E136820BA64688982491EF3AB60287" type="Body">53E136820BA64688982491EF3AB60287</source_id>
+      <tab_stop>1</tab_stop>
+      <x>410</x>
+      <y>310</y>
+      <name>node_style_border_color</name>
+      <Relationships>
+       <Item type="Field Event" id="FC3D0BCAC0CA47A695980DE81781C9A9" action="add">
+        <field_event>onchange</field_event>
+        <related_id keyed_name="labs_ViewCard_UpdateTemplate" type="Method">
+         <Item type="Method" action="get" select="id">
+          <name>labs_ViewCard_UpdateTemplate</name>
+         </Item>
+        </related_id>
+        <sort_order>128</sort_order>
+        <source_id keyed_name="node_style_border_color" type="Field">29BA724AB5C045BD81B4A3FBBBDC0FFD</source_id>
+       </Item>
+      </Relationships>
+     </Item>
+     <Item type="Field" id="D8AFF4263DC6434B8590A24A36C22A83" action="add">
+      <border_width>0</border_width>
+      <display_length>60</display_length>
+      <display_length_unit>px</display_length_unit>
+      <field_type>text</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>0</is_visible>
+      <label xml:lang="en">Radius</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <sort_order>2560</sort_order>
+      <source_id keyed_name="53E136820BA64688982491EF3AB60287" type="Body">53E136820BA64688982491EF3AB60287</source_id>
+      <tab_stop>1</tab_stop>
+      <x>310</x>
+      <y>310</y>
+      <name>node_style_border_radius</name>
+      <Relationships>
+       <Item type="Field Event" id="C5E8E14DEBDE428EA97FE8FD5AC503BE" action="add">
+        <field_event>onchange</field_event>
+        <related_id keyed_name="labs_ViewCard_UpdateTemplate" type="Method">
+         <Item type="Method" action="get" select="id">
+          <name>labs_ViewCard_UpdateTemplate</name>
+         </Item>
+        </related_id>
+        <sort_order>128</sort_order>
+        <source_id keyed_name="node_style_border_radius" type="Field">D8AFF4263DC6434B8590A24A36C22A83</source_id>
+       </Item>
+      </Relationships>
+     </Item>
+     <Item type="Field" id="447D8A9875774220B881D4B036D0B808" action="add">
+      <border_width>0</border_width>
+      <display_length>60</display_length>
+      <display_length_unit>px</display_length_unit>
+      <field_type>text</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>0</is_visible>
+      <label xml:lang="en">Width</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <sort_order>2432</sort_order>
+      <source_id keyed_name="53E136820BA64688982491EF3AB60287" type="Body">53E136820BA64688982491EF3AB60287</source_id>
+      <tab_stop>1</tab_stop>
+      <x>210</x>
+      <y>310</y>
+      <name>node_style_border_width</name>
+      <Relationships>
+       <Item type="Field Event" id="B50EF37FBB03452E9B8FB760D39D214C" action="add">
+        <field_event>onchange</field_event>
+        <related_id keyed_name="labs_ViewCard_UpdateTemplate" type="Method">
+         <Item type="Method" action="get" select="id">
+          <name>labs_ViewCard_UpdateTemplate</name>
+         </Item>
+        </related_id>
+        <sort_order>128</sort_order>
+        <source_id keyed_name="node_style_border_width" type="Field">447D8A9875774220B881D4B036D0B808</source_id>
+       </Item>
+      </Relationships>
+     </Item>
+     <Item type="Field" id="006C93383D494F958C6571CC85939323" action="add">
+      <border_width>0</border_width>
+      <display_length_unit>px</display_length_unit>
+      <field_type>label</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>12pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>0</is_visible>
+      <label xml:lang="en">General</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <sort_order>1536</sort_order>
+      <source_id keyed_name="53E136820BA64688982491EF3AB60287" type="Body">53E136820BA64688982491EF3AB60287</source_id>
+      <tab_stop>1</tab_stop>
+      <x>210</x>
+      <y>70</y>
+      <name>node_style_general</name>
+     </Item>
+     <Item type="Field" id="AB507951FDDC46FD8EA962C8F0C929C0" action="add">
+      <border_width>0</border_width>
+      <display_length>60</display_length>
+      <display_length_unit>px</display_length_unit>
+      <field_type>text</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>0</is_visible>
+      <label xml:lang="en">Height</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <sort_order>1024</sort_order>
+      <source_id keyed_name="53E136820BA64688982491EF3AB60287" type="Body">53E136820BA64688982491EF3AB60287</source_id>
+      <tab_stop>1</tab_stop>
+      <x>210</x>
+      <y>110</y>
+      <name>node_style_height</name>
+      <Relationships>
+       <Item type="Field Event" id="89DCDBF38C2D4E898CB6E53C0E26B488" action="add">
+        <field_event>onchange</field_event>
+        <related_id keyed_name="labs_ViewCard_UpdateTemplate" type="Method">
+         <Item type="Method" action="get" select="id">
+          <name>labs_ViewCard_UpdateTemplate</name>
+         </Item>
+        </related_id>
+        <sort_order>128</sort_order>
+        <source_id keyed_name="node_style_height" type="Field">AB507951FDDC46FD8EA962C8F0C929C0</source_id>
+       </Item>
+      </Relationships>
+     </Item>
+     <Item type="Field" id="5DC6B366C1DF45638FBDDE47FEB782E2" action="add">
+      <border_width>0</border_width>
+      <display_length_unit>px</display_length_unit>
+      <field_type>label</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>12pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>0</is_visible>
+      <label xml:lang="en">Padding</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <sort_order>1664</sort_order>
+      <source_id keyed_name="53E136820BA64688982491EF3AB60287" type="Body">53E136820BA64688982491EF3AB60287</source_id>
+      <tab_stop>1</tab_stop>
+      <x>210</x>
+      <y>170</y>
+      <name>node_style_padding</name>
+     </Item>
+     <Item type="Field" id="226F10ABD0494271BB26070AE9426B95" action="add">
+      <border_width>0</border_width>
+      <display_length>60</display_length>
+      <display_length_unit>px</display_length_unit>
+      <field_type>text</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>0</is_visible>
+      <label xml:lang="en">Bottom</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <sort_order>2176</sort_order>
+      <source_id keyed_name="53E136820BA64688982491EF3AB60287" type="Body">53E136820BA64688982491EF3AB60287</source_id>
+      <tab_stop>1</tab_stop>
+      <x>510</x>
+      <y>210</y>
+      <name>node_style_padding_bottom</name>
+      <Relationships>
+       <Item type="Field Event" id="DBFDD5F891E2472781137C00824B283A" action="add">
+        <field_event>onchange</field_event>
+        <related_id keyed_name="labs_ViewCard_UpdateTemplate" type="Method">
+         <Item type="Method" action="get" select="id">
+          <name>labs_ViewCard_UpdateTemplate</name>
+         </Item>
+        </related_id>
+        <sort_order>128</sort_order>
+        <source_id keyed_name="node_style_padding_bottom" type="Field">226F10ABD0494271BB26070AE9426B95</source_id>
+       </Item>
+      </Relationships>
+     </Item>
+     <Item type="Field" id="B09C1BAE24B1435B8F557ECF4F477BD8" action="add">
+      <border_width>0</border_width>
+      <display_length>60</display_length>
+      <display_length_unit>px</display_length_unit>
+      <field_type>text</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>0</is_visible>
+      <label xml:lang="en">Left</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <sort_order>1792</sort_order>
+      <source_id keyed_name="53E136820BA64688982491EF3AB60287" type="Body">53E136820BA64688982491EF3AB60287</source_id>
+      <tab_stop>1</tab_stop>
+      <x>210</x>
+      <y>210</y>
+      <name>node_style_padding_left</name>
+      <Relationships>
+       <Item type="Field Event" id="03BA5B8013914392AC01165AEFF4F30F" action="add">
+        <field_event>onchange</field_event>
+        <related_id keyed_name="labs_ViewCard_UpdateTemplate" type="Method">
+         <Item type="Method" action="get" select="id">
+          <name>labs_ViewCard_UpdateTemplate</name>
+         </Item>
+        </related_id>
+        <sort_order>128</sort_order>
+        <source_id keyed_name="node_style_padding_left" type="Field">B09C1BAE24B1435B8F557ECF4F477BD8</source_id>
+       </Item>
+      </Relationships>
+     </Item>
+     <Item type="Field" id="A3C9FD5DFA1A414D896BEC4D50D95D89" action="add">
+      <border_width>0</border_width>
+      <display_length>60</display_length>
+      <display_length_unit>px</display_length_unit>
+      <field_type>text</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>0</is_visible>
+      <label xml:lang="en">Right</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <sort_order>1920</sort_order>
+      <source_id keyed_name="53E136820BA64688982491EF3AB60287" type="Body">53E136820BA64688982491EF3AB60287</source_id>
+      <tab_stop>1</tab_stop>
+      <x>310</x>
+      <y>210</y>
+      <name>node_style_padding_right</name>
+      <Relationships>
+       <Item type="Field Event" id="B67B9319E08740FA87D84735A0CB581F" action="add">
+        <field_event>onchange</field_event>
+        <related_id keyed_name="labs_ViewCard_UpdateTemplate" type="Method">
+         <Item type="Method" action="get" select="id">
+          <name>labs_ViewCard_UpdateTemplate</name>
+         </Item>
+        </related_id>
+        <sort_order>128</sort_order>
+        <source_id keyed_name="node_style_padding_right" type="Field">A3C9FD5DFA1A414D896BEC4D50D95D89</source_id>
+       </Item>
+      </Relationships>
+     </Item>
+     <Item type="Field" id="9FAA1813D4B44994A9A3AD8E7C473822" action="add">
+      <border_width>0</border_width>
+      <display_length>60</display_length>
+      <display_length_unit>px</display_length_unit>
+      <field_type>text</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>0</is_visible>
+      <label xml:lang="en">Top</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <sort_order>2048</sort_order>
+      <source_id keyed_name="53E136820BA64688982491EF3AB60287" type="Body">53E136820BA64688982491EF3AB60287</source_id>
+      <tab_stop>1</tab_stop>
+      <x>410</x>
+      <y>210</y>
+      <name>node_style_padding_top</name>
+      <Relationships>
+       <Item type="Field Event" id="FD241C7E3CC54FF793CA4A1E24C8FD82" action="add">
+        <field_event>onchange</field_event>
+        <related_id keyed_name="labs_ViewCard_UpdateTemplate" type="Method">
+         <Item type="Method" action="get" select="id">
+          <name>labs_ViewCard_UpdateTemplate</name>
+         </Item>
+        </related_id>
+        <sort_order>128</sort_order>
+        <source_id keyed_name="node_style_padding_top" type="Field">9FAA1813D4B44994A9A3AD8E7C473822</source_id>
+       </Item>
+      </Relationships>
+     </Item>
+     <Item type="Field" id="F0ED5CCF15C54D1596FBB1F88F0829CB" action="add">
+      <border_width>0</border_width>
+      <display_length_unit>px</display_length_unit>
+      <field_type>label</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>12pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>0</is_visible>
+      <label xml:lang="en">Shadow</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <sort_order>3200</sort_order>
+      <source_id keyed_name="53E136820BA64688982491EF3AB60287" type="Body">53E136820BA64688982491EF3AB60287</source_id>
+      <tab_stop>1</tab_stop>
+      <x>210</x>
+      <y>370</y>
+      <name>node_style_shadow</name>
+     </Item>
+     <Item type="Field" id="25D630744FE84F8BB7A38ABAAE0BFAE7" action="add">
+      <border_width>0</border_width>
+      <display_length>120</display_length>
+      <display_length_unit>px</display_length_unit>
+      <field_type>text</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>0</is_visible>
+      <label xml:lang="en">Color</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <sort_order>3456</sort_order>
+      <source_id keyed_name="53E136820BA64688982491EF3AB60287" type="Body">53E136820BA64688982491EF3AB60287</source_id>
+      <tab_stop>1</tab_stop>
+      <x>510</x>
+      <y>410</y>
+      <name>node_style_shadow_color</name>
+      <Relationships>
+       <Item type="Field Event" id="EB934A3119CD4D07BBA106179D7A5952" action="add">
+        <field_event>onchange</field_event>
+        <related_id keyed_name="labs_ViewCard_UpdateTemplate" type="Method">
+         <Item type="Method" action="get" select="id">
+          <name>labs_ViewCard_UpdateTemplate</name>
+         </Item>
+        </related_id>
+        <sort_order>128</sort_order>
+        <source_id keyed_name="node_style_shadow_color" type="Field">25D630744FE84F8BB7A38ABAAE0BFAE7</source_id>
+       </Item>
+      </Relationships>
+     </Item>
+     <Item type="Field" id="69FDAFFE242947DA8C8C0BF9300C5B50" action="add">
+      <border_width>0</border_width>
+      <display_length>60</display_length>
+      <display_length_unit>px</display_length_unit>
+      <field_type>text</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>0</is_visible>
+      <label xml:lang="en">Opacity</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <sort_order>3328</sort_order>
+      <source_id keyed_name="53E136820BA64688982491EF3AB60287" type="Body">53E136820BA64688982491EF3AB60287</source_id>
+      <tab_stop>1</tab_stop>
+      <x>410</x>
+      <y>410</y>
+      <name>node_style_shadow_opacity</name>
+      <Relationships>
+       <Item type="Field Event" id="411996B900F44CD4BC928AF782EEFD83" action="add">
+        <field_event>onchange</field_event>
+        <related_id keyed_name="labs_ViewCard_UpdateTemplate" type="Method">
+         <Item type="Method" action="get" select="id">
+          <name>labs_ViewCard_UpdateTemplate</name>
+         </Item>
+        </related_id>
+        <sort_order>128</sort_order>
+        <source_id keyed_name="node_style_shadow_opacity" type="Field">69FDAFFE242947DA8C8C0BF9300C5B50</source_id>
+       </Item>
+      </Relationships>
+     </Item>
+     <Item type="Field" id="8A4E9AC77B924DF8BA1FEB811BA98DA7" action="add">
+      <border_width>0</border_width>
+      <display_length>60</display_length>
+      <display_length_unit>px</display_length_unit>
+      <field_type>text</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>0</is_visible>
+      <label xml:lang="en">X Offset</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <sort_order>2816</sort_order>
+      <source_id keyed_name="53E136820BA64688982491EF3AB60287" type="Body">53E136820BA64688982491EF3AB60287</source_id>
+      <tab_stop>1</tab_stop>
+      <x>210</x>
+      <y>410</y>
+      <name>node_style_shadow_x</name>
+      <Relationships>
+       <Item type="Field Event" id="52846F22C8DD423391E0AB3A9EACD68D" action="add">
+        <field_event>onchange</field_event>
+        <related_id keyed_name="labs_ViewCard_UpdateTemplate" type="Method">
+         <Item type="Method" action="get" select="id">
+          <name>labs_ViewCard_UpdateTemplate</name>
+         </Item>
+        </related_id>
+        <sort_order>128</sort_order>
+        <source_id keyed_name="node_style_shadow_x" type="Field">8A4E9AC77B924DF8BA1FEB811BA98DA7</source_id>
+       </Item>
+      </Relationships>
+     </Item>
+     <Item type="Field" id="E24F2ED75CD44992870F2CD38BF30BD8" action="add">
+      <border_width>0</border_width>
+      <display_length>60</display_length>
+      <display_length_unit>px</display_length_unit>
+      <field_type>text</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>0</is_visible>
+      <label xml:lang="en">Y Offset</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <sort_order>2944</sort_order>
+      <source_id keyed_name="53E136820BA64688982491EF3AB60287" type="Body">53E136820BA64688982491EF3AB60287</source_id>
+      <tab_stop>1</tab_stop>
+      <x>310</x>
+      <y>410</y>
+      <name>node_style_shadow_y</name>
+      <Relationships>
+       <Item type="Field Event" id="26C5447A30D94E338CB165DB4A978133" action="add">
+        <field_event>onchange</field_event>
+        <related_id keyed_name="labs_ViewCard_UpdateTemplate" type="Method">
+         <Item type="Method" action="get" select="id">
+          <name>labs_ViewCard_UpdateTemplate</name>
+         </Item>
+        </related_id>
+        <sort_order>128</sort_order>
+        <source_id keyed_name="node_style_shadow_y" type="Field">E24F2ED75CD44992870F2CD38BF30BD8</source_id>
+       </Item>
+      </Relationships>
+     </Item>
+     <Item type="Field" id="181E1E037C594801BA932D2004F4E678" action="add">
+      <border_width>0</border_width>
+      <display_length>60</display_length>
+      <display_length_unit>px</display_length_unit>
+      <field_type>text</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>0</is_visible>
+      <label xml:lang="en">Width</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <sort_order>1152</sort_order>
+      <source_id keyed_name="53E136820BA64688982491EF3AB60287" type="Body">53E136820BA64688982491EF3AB60287</source_id>
+      <tab_stop>1</tab_stop>
+      <x>310</x>
+      <y>110</y>
+      <name>node_style_width</name>
+      <Relationships>
+       <Item type="Field Event" id="A100199D49B844639407B3A3133DDF91" action="add">
+        <field_event>onchange</field_event>
+        <related_id keyed_name="labs_ViewCard_UpdateTemplate" type="Method">
+         <Item type="Method" action="get" select="id">
+          <name>labs_ViewCard_UpdateTemplate</name>
+         </Item>
+        </related_id>
+        <sort_order>128</sort_order>
+        <source_id keyed_name="node_style_width" type="Field">181E1E037C594801BA932D2004F4E678</source_id>
+       </Item>
+      </Relationships>
+     </Item>
+     <Item type="Field" id="E5AC066E09E64732A747BCCDAE86011D" action="add">
+      <border_width>0</border_width>
+      <display_length_unit>px</display_length_unit>
+      <field_type>button</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>0</is_visible>
+      <label xml:lang="en">Load Preview</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <sort_order>7168</sort_order>
+      <source_id keyed_name="53E136820BA64688982491EF3AB60287" type="Body">53E136820BA64688982491EF3AB60287</source_id>
+      <tab_stop>1</tab_stop>
+      <x>210</x>
+      <y>270</y>
+      <name>preview_button</name>
+      <Relationships>
+       <Item type="Field Event" id="C3BCD0E5EA2542A9BD9B2A495EB360EA" action="add">
+        <field_event>onclick</field_event>
+        <related_id keyed_name="labs_ViewCard_Preview" type="Method">
+         <Item type="Method" action="get" select="id">
+          <name>labs_ViewCard_Preview</name>
+         </Item>
+        </related_id>
+        <sort_order>128</sort_order>
+        <source_id keyed_name="preview_button" type="Field">E5AC066E09E64732A747BCCDAE86011D</source_id>
+       </Item>
+      </Relationships>
+     </Item>
+     <Item type="Field" id="CB0759184D374B2EB86798CF392D07BB" action="add">
+      <border_width>0</border_width>
+      <display_length>120</display_length>
+      <display_length_unit>px</display_length_unit>
+      <field_type>text</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>0</is_visible>
+      <label xml:lang="en">Graph View Definition</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <sort_order>7040</sort_order>
+      <source_id keyed_name="53E136820BA64688982491EF3AB60287" type="Body">53E136820BA64688982491EF3AB60287</source_id>
+      <tab_stop>1</tab_stop>
+      <x>210</x>
+      <y>210</y>
+      <name>preview_gvd</name>
+      <Relationships>
+       <Item type="Field Event" id="9049106B0F3C45938AE0BB073EA115C4" action="add">
+        <field_event>onclick</field_event>
+        <related_id keyed_name="labs_SearchGVD" type="Method">
+         <Item type="Method" action="get" select="id">
+          <name>labs_SearchGVD</name>
+         </Item>
+        </related_id>
+        <sort_order>128</sort_order>
+        <source_id keyed_name="preview_gvd" type="Field">CB0759184D374B2EB86798CF392D07BB</source_id>
+       </Item>
+      </Relationships>
+     </Item>
+     <Item type="Field" id="DEC43465EF364402A427DD3B7064AD7F" action="add">
+      <border_width>0</border_width>
+      <display_length>120</display_length>
+      <display_length_unit>px</display_length_unit>
+      <field_type>text</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>0</is_visible>
+      <label xml:lang="en">Root Item</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <sort_order>6912</sort_order>
+      <source_id keyed_name="53E136820BA64688982491EF3AB60287" type="Body">53E136820BA64688982491EF3AB60287</source_id>
+      <tab_stop>1</tab_stop>
+      <x>210</x>
+      <y>160</y>
+      <name>preview_item</name>
+      <Relationships>
+       <Item type="Field Event" id="3558BB82FC5E4063A862B963F6B47D16" action="add">
+        <field_event>onclick</field_event>
+        <related_id keyed_name="labs_SearchRootItem" type="Method">
+         <Item type="Method" action="get" select="id">
+          <name>labs_SearchRootItem</name>
+         </Item>
+        </related_id>
+        <sort_order>128</sort_order>
+        <source_id keyed_name="preview_item" type="Field">DEC43465EF364402A427DD3B7064AD7F</source_id>
+       </Item>
+      </Relationships>
+     </Item>
+     <Item type="Field" id="711FC14BF45B4E96B936D176C7294C2A" action="add">
+      <border_width>0</border_width>
+      <display_length>120</display_length>
+      <display_length_unit>px</display_length_unit>
+      <field_type>text</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>0</is_visible>
+      <label xml:lang="en">ItemType</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <sort_order>6784</sort_order>
+      <source_id keyed_name="53E136820BA64688982491EF3AB60287" type="Body">53E136820BA64688982491EF3AB60287</source_id>
+      <tab_stop>1</tab_stop>
+      <x>210</x>
+      <y>110</y>
+      <name>preview_itemtype</name>
+      <Relationships>
+       <Item type="Field Event" id="25C7BD2176064C2EB641FE0353DECDA6" action="add">
+        <field_event>onclick</field_event>
+        <related_id keyed_name="labs_SearchItemTypes" type="Method">
+         <Item type="Method" action="get" select="id">
+          <name>labs_SearchItemTypes</name>
+         </Item>
+        </related_id>
+        <sort_order>128</sort_order>
+        <source_id keyed_name="preview_itemtype" type="Field">711FC14BF45B4E96B936D176C7294C2A</source_id>
+       </Item>
+      </Relationships>
+     </Item>
+     <Item type="Field" id="22CAAEDD388B42BA90EC3A329CA42F52" action="add">
+      <border_width>0</border_width>
+      <display_length_unit>px</display_length_unit>
+      <field_type>label</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>12pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>0</is_visible>
+      <label xml:lang="en">Preview Options</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <sort_order>6656</sort_order>
+      <source_id keyed_name="53E136820BA64688982491EF3AB60287" type="Body">53E136820BA64688982491EF3AB60287</source_id>
+      <tab_stop>1</tab_stop>
+      <x>210</x>
+      <y>70</y>
+      <name>preview_label</name>
+     </Item>
+     <Item type="Field" id="2FB1C365D11A409DB9EAA50BD7133B49" action="add">
+      <bg_color>beige  </bg_color>
+      <border_width>0</border_width>
+      <display_length_unit>px</display_length_unit>
+      <field_type>textarea</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>1</is_disabled>
+      <is_visible>0</is_visible>
+      <label xml:lang="en">Template Definition</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <propertytype_id keyed_name="template_definition" type="Property">985306A7F90B42C2A715F4B946113D01</propertytype_id>
+      <sort_order>256</sort_order>
+      <source_id keyed_name="53E136820BA64688982491EF3AB60287" type="Body">53E136820BA64688982491EF3AB60287</source_id>
+      <tab_index>3200</tab_index>
+      <tab_stop>1</tab_stop>
+      <textarea_cols>348</textarea_cols>
+      <textarea_rows>300</textarea_rows>
+      <x>210</x>
+      <y>70</y>
+      <name>template_definition</name>
+     </Item>
+     <Item type="Field" id="65A61B79451F4B24A8F82FCB42E994A7" action="add">
+      <border_width>0</border_width>
+      <display_length_unit>px</display_length_unit>
+      <field_type>label</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>12pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>0</is_visible>
+      <label xml:lang="en">Template</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <sort_order>4608</sort_order>
+      <source_id keyed_name="53E136820BA64688982491EF3AB60287" type="Body">53E136820BA64688982491EF3AB60287</source_id>
+      <tab_stop>1</tab_stop>
+      <x>210</x>
+      <y>70</y>
+      <name>template_label</name>
+     </Item>
+    </Relationships>
+   </Item>
+   <Item type="Form Event" id="3662565A950F4B8D9D2B5677DD2645B9" action="add">
+    <form_event>onformpopulated</form_event>
+    <related_id keyed_name="labs_ViewCard_LoadFunctions" type="Method">
+     <Item type="Method" action="get" select="id">
+      <name>labs_ViewCard_LoadFunctions</name>
+     </Item>
+    </related_id>
+    <sort_order>0</sort_order>
+    <source_id keyed_name="labs_ViewCard" type="Form">B15A43D5147D4B36B478A1EE9623A532</source_id>
+   </Item>
+   <Item type="Form Event" id="E9F9AF8CA8184303BFFD57D25EE6C793" action="add">
+    <form_event>onformpopulated</form_event>
+    <related_id keyed_name="labs_ViewCard_PopForm" type="Method">
+     <Item type="Method" action="get" select="id">
+      <name>labs_ViewCard_PopForm</name>
+     </Item>
+    </related_id>
+    <sort_order>384</sort_order>
+    <source_id keyed_name="labs_ViewCard" type="Form">B15A43D5147D4B36B478A1EE9623A532</source_id>
+   </Item>
+   <Item type="Form Event" id="2135FA62D45844C8B5FCD016873A8F9F" action="add">
+    <form_event>onload</form_event>
+    <related_id keyed_name="labs_ViewCard_PopLists" type="Method">
+     <Item type="Method" action="get" select="id">
+      <name>labs_ViewCard_PopLists</name>
+     </Item>
+    </related_id>
+    <sort_order>0</sort_order>
+    <source_id keyed_name="labs_ViewCard" type="Form">B15A43D5147D4B36B478A1EE9623A532</source_id>
+   </Item>
+   <Item type="Form Event" id="6EFAE983E34A4C89A94F0B40634A9E28" action="add">
+    <form_event>onload</form_event>
+    <related_id keyed_name="labs_ViewCard_ToggleFields" type="Method">
+     <Item type="Method" action="get" select="id">
+      <name>labs_ViewCard_ToggleFields</name>
+     </Item>
+    </related_id>
+    <sort_order>256</sort_order>
+    <source_id keyed_name="labs_ViewCard" type="Form">B15A43D5147D4B36B478A1EE9623A532</source_id>
+   </Item>
+  </Relationships>
+ </Item>
+</AML>

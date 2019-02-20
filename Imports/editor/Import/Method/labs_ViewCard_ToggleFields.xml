@@ -1,0 +1,152 @@
+﻿<AML>
+ <Item type="Method" id="76935DD58C3843FE8922CCE23269C5EF" action="add">
+  <comments>Method shows/hides fields when a View Card editor tab is clicked.</comments>
+  <execution_allowed_to keyed_name="Administrators" type="Identity">2618D6F5A90949BAA7E920D1B04C7EE1</execution_allowed_to>
+  <method_code><![CDATA[// this method manages the field toggling that happens when a user clicks the "tabs" in the editor
+// constants for tab names
+var NODE_STYLE = "node-style-tab";
+var CONNECTOR_STYLE = "connector-style-tab";
+var NODE_CONTENT = "node-content-tab";
+var CONTENT_STYLE = "content-style-tab";
+var TEMPLATE = "template-tab";
+var PREVIEW = "preview-tab";
+var DEFAULT = "detail-tab";
+
+// constants for class names
+var EDITOR_TAB_CLASS = "editor-tab";
+var ACTIVE_TAB_CLASS = "editor-tab-active";
+
+// field names for tabs
+var NODE_STYLE_FIELDS = ["node_style_bg_color", "node_style_border", "node_style_border_color", "node_style_border_radius", "node_style_border_width", "node_style_general", "node_style_height", "node_style_padding", "node_style_padding_bottom", "node_style_padding_left", "node_style_padding_right", "node_style_padding_top", "node_style_shadow", "node_style_shadow_color", "node_style_shadow_opacity", "node_style_shadow_x", "node_style_shadow_y", "node_style_width"];
+var CONNECTOR_STYLE_FIELDS = ["con_style_arrow_color", "con_style_arrow_height", "con_style_arrow_width", "con_style_arrowhead", "con_style_color", "con_style_general", "con_style_weight"];
+var NODE_CONTENT_FIELDS = ["node_content_binding", "node_content_cell", "node_content_col_width", "node_content_row_height", "node_content", "node_content_table", "node_content_type", "node_content_col_btn", "node_content_row_btn", "node_content_rem_col_btn", "node_content_rem_row_btn"];
+var CONTENT_STYLE_FIELDS = ["content_style_font_color", "content_style_font_family", "content_style_font_size", "content_style_font_weight", "content_style_h_alignment", "content_style_text_decoration", "content_style_v_align", "node_content_table", "content_style_font", "content_style_alignment"];
+var TEMPLATE_FIELDS = ["template_definition"];
+var PREVIEW_FIELDS = ["card_preview", "preview_button", "preview_gvd", "preview_item", "preview_itemtype", "preview_label"];
+var DEFAULT_FIELDS = ["description"];
+
+var last_active = "";
+
+// toggle active class when a tab is clicked
+var select_editor_tab = function() {
+    var this_id = this.id;
+    var all_tabs = document.getElementsByClassName(EDITOR_TAB_CLASS);
+
+    for (var i = 0; i < all_tabs.length; i++) {
+        var this_tab = all_tabs[i];
+        if (this_tab.id == this_id) {
+            this_tab.classList.add(ACTIVE_TAB_CLASS);
+        } else if (this_tab.classList.contains(ACTIVE_TAB_CLASS)) {
+            this_tab.classList.remove(ACTIVE_TAB_CLASS);
+            last_active = this_tab.id;
+        }
+    }
+
+    toggle_form_fields(this_id);
+    document.active_tab = this_id;
+};
+
+var show_default = function() {
+    toggle_form_fields(DEFAULT_FIELDS);
+    document.active_tab = DEFAULT_FIELDS;
+};
+
+// add click event to all tabs
+document.getElementById(NODE_STYLE).addEventListener("click", select_editor_tab);
+document.getElementById(CONNECTOR_STYLE).addEventListener("click", select_editor_tab);
+document.getElementById(NODE_CONTENT).addEventListener("click", select_editor_tab);
+document.getElementById(CONTENT_STYLE).addEventListener("click", select_editor_tab);
+document.getElementById(TEMPLATE).addEventListener("click", select_editor_tab);
+document.getElementById(PREVIEW).addEventListener("click", select_editor_tab);
+document.getElementById(DEFAULT).addEventListener("click", select_editor_tab);
+
+// show the correct form fields for the active tab
+var toggle_form_fields = function(active_tab) {
+    // get fields for last active tab
+    var last_active_fields = [];
+
+    switch (last_active) {
+        case NODE_STYLE:
+            last_active_fields = NODE_STYLE_FIELDS;
+            break;
+        case CONNECTOR_STYLE:
+            last_active_fields = CONNECTOR_STYLE_FIELDS;
+            break;
+        case NODE_CONTENT:
+            last_active_fields = NODE_CONTENT_FIELDS;
+            break;
+        case CONTENT_STYLE:
+            last_active_fields = CONTENT_STYLE_FIELDS;
+            break;
+        case TEMPLATE:
+            last_active_fields = TEMPLATE_FIELDS;
+            break;
+        case PREVIEW:
+            last_active_fields = PREVIEW_FIELDS;
+            break;
+        default:
+            // append all fields 
+            last_active_fields.concat(NODE_STYLE_FIELDS);
+            last_active_fields.concat(CONNECTOR_STYLE_FIELDS);
+            last_active_fields.concat(NODE_CONTENT_FIELDS);
+            last_active_fields.concat(CONTENT_STYLE_FIELDS);
+            last_active_fields.concat(TEMPLATE_FIELDS);
+            last_active_fields.concat(PREVIEW_FIELDS);
+            last_active_fields.concat(DEFAULT_FIELDS);
+    }
+
+    if (last_active_fields.length === 0) {
+        last_active_fields = DEFAULT_FIELDS;
+    }
+
+    disable_fields(last_active_fields);
+
+    switch (active_tab) {
+        case NODE_STYLE:
+            enable_fields(NODE_STYLE_FIELDS);
+            break;
+        case CONNECTOR_STYLE:
+            enable_fields(CONNECTOR_STYLE_FIELDS);
+            break;
+        case NODE_CONTENT:
+            enable_fields(NODE_CONTENT_FIELDS);
+            break;
+        case CONTENT_STYLE:
+            enable_fields(CONTENT_STYLE_FIELDS);
+            break;
+        case TEMPLATE:
+            enable_fields(TEMPLATE_FIELDS);
+            break;
+        case PREVIEW:
+            enable_fields(PREVIEW_FIELDS);
+            break;
+        case DEFAULT:
+            enable_fields(DEFAULT_FIELDS);
+            break;
+    }
+};
+
+var enable_fields = function(field_list) {
+    for (var i = 0; i < field_list.length; i++) {
+        var field = getFieldByName(field_list[i]);
+        field.style.visibility = "visible";
+        field.style.display = "";
+    }
+};
+
+var disable_fields = function(field_list) {
+    for (var i = 0; i < field_list.length; i++) {
+        // console.log("disabling: " + field_list[i]);
+        var field = getFieldByName(field_list[i]);
+        field.style.visibility = "hidden";
+        field.style.display = "none";
+    }
+};
+
+// show the default tab as active
+document.active_tab = DEFAULT;
+document.getElementById(DEFAULT).classList.add(ACTIVE_TAB_CLASS);]]></method_code>
+  <method_type>JavaScript</method_type>
+  <name>labs_ViewCard_ToggleFields</name>
+ </Item>
+</AML>

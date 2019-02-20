@@ -1,0 +1,143 @@
+﻿<AML>
+ <Item type="Method" id="F5B7857178624A26A7A5B77C8CE1F709" action="add">
+  <comments>Method populates the View Card editor fields based on the template_definition property.</comments>
+  <execution_allowed_to keyed_name="Administrators" type="Identity">2618D6F5A90949BAA7E920D1B04C7EE1</execution_allowed_to>
+  <method_code><![CDATA[var card = document.ViewCard.build_object();
+if (!card) {
+    return;
+}
+
+/**** node style **************************************************************/
+
+if (card.container) {
+    // general
+    if (card.container.style) {
+        document.FieldHelper.set_field("node_style_height", "text", card.container.style.height);
+        document.FieldHelper.set_field("node_style_width", "text", card.container.style.width);
+        document.FieldHelper.set_field("node_style_bg_color", "text", card.container.style.color);
+
+
+        // padding
+        if (card.container.style.padding) {
+            document.FieldHelper.set_field("node_style_padding_left", "text", card.container.style.padding.left);
+            document.FieldHelper.set_field("node_style_padding_right", "text", card.container.style.padding.right);
+            document.FieldHelper.set_field("node_style_padding_top", "text", card.container.style.padding.top);
+            document.FieldHelper.set_field("node_style_padding_bottom", "text", card.container.style.padding.bottom);
+        }
+
+        // border
+        if (card.container.style.border) {
+            document.FieldHelper.set_field("node_style_border_width", "text", card.container.style.border.width);
+            document.FieldHelper.set_field("node_style_border_radius", "text", card.container.style.border.cornerRadius);
+            document.FieldHelper.set_field("node_style_border_color", "text", card.container.style.border.color);
+
+            // shadow
+            if (card.container.style.border.shadow) {
+                document.FieldHelper.set_field("node_style_shadow_x", "text", card.container.style.border.shadow.horizontal);
+                document.FieldHelper.set_field("node_style_shadow_y", "text", card.container.style.border.shadow.vertical);
+                document.FieldHelper.set_field("node_style_shadow_opacity", "text", card.container.style.border.shadow.opacity);
+                document.FieldHelper.set_field("node_style_shadow_color", "text", card.container.style.border.shadow.color);
+            }
+        }
+    }
+}
+
+
+/**** connector style *********************************************************/
+
+if (card.style) {
+    // general
+    document.FieldHelper.set_field("con_style_weight", "text", card.style.weight);
+    document.FieldHelper.set_field("con_style_color", "text", card.style.color);
+
+    //arrowhead
+    if (card.style.arrowhead) {
+        document.FieldHelper.set_field("con_style_arrow_height", "text", card.style.arrowhead.height);
+        document.FieldHelper.set_field("con_style_arrow_width", "text", card.style.arrowhead.width);
+        document.FieldHelper.set_field("con_style_arrow_color", "text", card.style.arrowhead.color);
+    }
+}
+
+
+/**** node content & style ****************************************************/
+
+if (card.container && card.container.style) {
+    var rows = card.container.style.rows;
+    var cols = card.container.style.cols;
+    if (rows && cols) {
+        document.NodeEditor.build_table(cols, rows);
+    }
+
+    var cells = card.container.style.cells;
+    if (cells) {
+        document.NodeEditor.pop_table(cells);
+    }
+
+    // style table
+    var tbl = document.getElementById("layout-editor");
+    if (card.container.style.color) {
+        tbl.style.backgroundColor = card.container.style.color;
+    }
+
+    // style table container
+    var tbl_div = document.getElementById("preview-table");
+    if (card.container.style.height) {
+        tbl_div.style.height = card.container.style.height * 2 + "px";
+    }
+    if (card.container.style.width) {
+        tbl_div.style.width = card.container.style.width * 2 + "px";
+    }
+    if (card.container.style.color) {
+        tbl_div.style.backgroundColor = card.container.style.color;
+    }
+
+    if (card.container.style.padding) {
+        if (card.container.style.padding.left) {
+            tbl_div.style.paddingLeft = card.container.style.padding.left + "px";
+        }
+        if (card.container.style.padding.right) {
+            tbl_div.style.paddingRight = card.container.style.padding.right + "px";
+        }
+        if (card.container.style.padding.top) {
+            tbl_div.style.paddingTop = card.container.style.padding.top + "px";
+        }
+        if (card.container.style.padding.bottom) {
+            tbl_div.style.paddingBottom = card.container.style.padding.bottom + "px";
+        }
+    }
+
+    if (card.container.style.border) {
+        if (card.container.style.border.width) {
+            tbl_div.style.borderStyle = "solid";
+            tbl_div.style.borderWidth = card.container.style.border.width + "px";
+        }
+        if (card.container.style.border.cornerRadius) {
+            tbl_div.style.borderRadius = card.container.style.border.cornerRadius + "px";
+        }
+        if (card.container.style.border.color) {
+            tbl_div.style.borderColor = card.container.style.border.color;
+        }
+        if (card.container.style.border.shadow) {
+            var shadow_string = "";
+            if (card.container.style.border.shadow.horizontal) {
+                shadow_string += card.container.style.border.shadow.horizontal + "px ";
+            } else {
+                shadow_string += "0px ";
+            }
+            if (card.container.style.border.shadow.vertical) {
+                shadow_string += card.container.style.border.shadow.vertical + "px ";
+            } else {
+                shadow_string += "0px ";
+            }
+            if (card.container.style.border.shadow.color) {
+                shadow_string += card.container.style.border.shadow.color;
+            }
+            tbl_div.style.boxShadow = shadow_string;
+        }
+    }
+
+}]]></method_code>
+  <method_type>JavaScript</method_type>
+  <name>labs_ViewCard_PopForm</name>
+ </Item>
+</AML>

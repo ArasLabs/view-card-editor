@@ -1,0 +1,374 @@
+﻿<AML>
+ <Item type="Method" id="D154E343EB9A453D89D518F04DAE19CF" action="add">
+  <comments>Method adds helper objects to document for data and editor manipulation.</comments>
+  <execution_allowed_to keyed_name="Administrators" type="Identity">2618D6F5A90949BAA7E920D1B04C7EE1</execution_allowed_to>
+  <method_code><![CDATA[// a placeholder for the currently selected table cell
+document.selected_cell = null;
+
+// an in-mem object representing the template_definition property of the View Card
+document.ViewCard = {
+    template_string: null,
+    obj: null,
+
+    build_object: function() {
+        this.template_string = document.thisItem.getProperty("template_definition", "");
+        if (this.template_string === "") {
+            // create default
+            var default_template = '{ "container": { "type": "grid", "style": { "width": 200, "height": 90, "color": "#FFFFFF", "padding": { "left": 12, "right": 12, "top": 12, "bottom": 12 }, "rows": [ { "height": 20 } ], "cols": [ { "width": 20 } ], "border": { "width": 1, "color": "#555555", "cornerRadius": 2, "shadow": { "horizontal": 2, "vertical": 3, "color": "#000000", "opacity": 0.5 } }, "cells": [ { "content": "text", "content_binding": "id", "col": 0, "row": 0 } ] } }, "style": { "arrowhead": { "height": 17, "width": 7 } } }';
+            document.thisItem.setProperty("template_definition", default_template);
+            getFieldByName("template_definition").getElementsByTagName("textarea")[0].value = default_template;
+            this.template_string = default_template;
+        }
+        this.obj = JSON.parse(this.template_string);
+        return this.obj;
+    }
+};
+
+// a helper object for manipulating the rows, cols, and cells arrays of the View Card,
+// as well as the visual table representing the layout
+document.NodeEditor = {
+    table: null,
+
+    build_table: function(cols, rows) {
+        this.table = document.getElementById("layout-editor");
+        var tbl = this.table;
+        tbl.innerHTML = "";
+
+        for (var r = 0; r < rows.length; r++) {
+            var new_row = tbl.insertRow();
+            var height = rows[r].height;
+            new_row.style.height = height * 2 + "px";
+            for (var c = 0; c < cols.length; c++) {
+                this.create_cell(new_row.insertCell(), "", r, c, cols[c].width);
+            }
+        }
+    },
+
+    pop_table: function(cells) {
+        for (var i = 0; i < cells.length; i++) {
+            var cell = cells[i];
+            var tbl_cell = this.find_cell(cell.row, cell.col);
+            tbl_cell.innerHTML = cell.content_binding;
+
+            // apply styles
+            if (cell.style === undefined)
+                continue;
+
+            // font styles
+            if (cell.style.font) {
+                if (cell.style.font.family) {
+                    tbl_cell.style.fontFamily = cell.style.font.family;
+                }
+                if (cell.style.font.size) {
+                    tbl_cell.style.fontSize = cell.style.font.size + "px";
+                }
+                if (cell.style.font.weight) {
+                    tbl_cell.style.fontWeight = cell.style.font.weight;
+                }
+                if (cell.style.font.color) {
+                    tbl_cell.style.color = cell.style.font.color;
+                }
+            }
+
+            // other styles
+            if (cell.style.verticalAlignment) {
+                tbl_cell.style.verticalAlign = cell.style.verticalAlignment;
+            }
+
+            if (cell.style.horizontalAlignment) {
+                tbl_cell.style.textAlign = cell.style.horizontalAlignment;
+            }
+
+            if (cell.style.textDecoration) {
+                tbl_cell.style.textDecoration = cell.style.textDecoration;
+            }
+
+            if (cell.style.backgroundColor) {
+                tbl_cell.style.backgroundColor = cell.style.backgroundColor;
+            }
+        }
+    },
+
+    create_cell: function(cell, text, row, col, width) {
+        cell.classList.add("default-cell");
+        cell.innerHTML = text;
+        cell.setAttribute("row", row);
+        cell.setAttribute("col", col);
+        cell.style.width = width * 2 - 5 + "px";
+        cell.addEventListener("click", this.select_cell);
+    },
+
+    find_cell: function(row, col) {
+        var tbl = this.table;
+        var cell = tbl.rows[row].cells[col];
+        return cell;
+    },
+
+    select_cell: function(event) {
+        var cell_element = event.target;
+        var row = cell_element.getAttribute("row");
+        var col = cell_element.getAttribute("col");
+
+        if (!document.selected_cell) {
+            // select new cell
+            document.selected_cell = cell_element;
+            cell_element.classList.add("selected-cell");
+
+            // set fields
+            document.FieldHelper.pop_content_fields(cell_element);
+            document.FieldHelper.pop_style_fields(cell_element);
+            return;
+        }
+
+        if (document.selected_cell.getAttribute("row") === row && document.selected_cell.getAttribute("col") === col) {
+            // deselect cell
+            document.NodeEditor.deselect_cell(cell_element);
+            return;
+
+        } else {
+            // deselect previous cell
+            document.NodeEditor.deselect_cell(document.selected_cell);
+
+            // select new cell
+            document.selected_cell = cell_element;
+            cell_element.classList.add("selected-cell");
+
+            // set fields
+            document.FieldHelper.pop_content_fields(cell_element);
+            document.FieldHelper.pop_style_fields(cell_element);
+            return;
+        }
+    },
+
+    deselect_cell: function(cell) {
+        // remove selected style class
+        document.selected_cell === null;
+        if (cell.classList.contains("selected-cell")) {
+            cell.classList.remove("selected-cell");
+        }
+
+        // clear fields
+        document.FieldHelper.pop_content_fields(null);
+        document.FieldHelper.pop_style_fields(null);
+    },
+
+    add_row: function() {
+        var tbl = this.table;
+        if (!tbl) {
+            return alert("Table not defined. Can't add row.");
+        }
+
+        // add row to table
+        var cell_count = tbl.rows[0].cells.length;
+        var row = tbl.insertRow(tbl.rows.length);
+        row.style.height = "32px";
+        for (var c = 0; c < cell_count; c++) {
+            this.create_cell(row.insertCell(), "", tbl.rows.length - 1, c, 16);
+        }
+
+        // add a row to the object
+        var obj = document.ViewCard.obj;
+        if (!obj.container.style.rows) {
+            obj.container.style.rows = [];
+        }
+
+        var new_row = {
+            height: 16
+        };
+        document.ViewCard.obj.container.style.rows.push(new_row);
+    },
+
+    add_col: function() {
+        var tbl = this.table;
+        if (!tbl) {
+            return alert("Table not defined. Can't add column.");
+        }
+
+        // add col to table
+        var cell_count = tbl.rows[0].cells.length;
+        for (var i = 0; i < tbl.rows.length; i++) {
+            this.create_cell(tbl.rows[i].insertCell(cell_count), "", i, cell_count, 16);
+        }
+
+        // add a row to the object
+        var obj = document.ViewCard.obj;
+        if (!obj.container.style.cols) {
+            obj.container.style.cols = [];
+        }
+
+        var new_col = {
+            width: 16
+        };
+        obj.container.style.cols.push(new_col);
+    },
+
+    remove_row: function() {
+        var tbl = this.table;
+        if (!tbl) {
+            return alert("Table not defined. Can't remove row.");
+        }
+
+        // get selected row
+        var row;
+        if (document.selected_cell) {
+            row = document.selected_cell.getAttribute("row");
+        } else {
+            return alert("Select a cell before deleting a row");
+        }
+
+        // remove row from row array
+        document.ViewCard.obj.container.style.rows.splice(row, 1);
+
+        // remove any cells with this row from the cells array
+        var cell_count = document.ViewCard.obj.container.style.cells.length;
+        for (var i = 0; i < cell_count; i++) {
+            var this_cell = document.ViewCard.obj.container.style.cells[i];
+            if (this_cell === undefined) {
+                break;
+            }
+            if (this_cell.row == row) {
+                // remove cell and decrement i
+                document.ViewCard.obj.container.style.cells.splice(i, 1);
+                i--;
+            }
+        }
+
+        // update displayed table
+        tbl.deleteRow(row);
+    },
+
+    remove_col: function() {
+        var tbl = this.table;
+        if (!tbl) {
+            return alert("Table not defined. Can't remove column.");
+        }
+
+        // get selected column
+        var col;
+        if (document.selected_cell) {
+            col = document.selected_cell.getAttribute("col");
+        } else {
+            return alert("Select a cell before deleting a column");
+        }
+
+        // remove col from col array
+        document.ViewCard.obj.container.style.cols.splice(col, 1);
+
+        // remove any cells with this col from the cells array
+        var cell_count = document.ViewCard.obj.container.style.cells.length;
+        for (var i = 0; i < cell_count; i++) {
+            var this_cell = document.ViewCard.obj.container.style.cells[i];
+            if (this_cell === undefined) {
+                break;
+            }
+            if (this_cell.col == col) {
+                // remove cell and decrement i
+                document.ViewCard.obj.container.style.cells.splice(i, 1);
+                i--;
+            }
+        }
+
+        // update displayed table
+        for (var i = 0; i < tbl.rows.length; i++) {
+            var this_row = tbl.rows[i];
+            this_row.deleteCell(col);
+        }
+    }
+};
+
+// a helper object with functions for setting the content and style fields based on the selected table cell
+document.FieldHelper = {
+    pop_content_fields: function(cell) {
+        // if cell is null, clear fields
+        if (cell === null || cell === undefined) {
+            // TODO: update object if needed 
+            this.set_field("node_content_row_height", "text", "");
+            this.set_field("node_content_col_width", "text", "");
+            this.set_field("node_content_binding", "text", "");
+            this.set_field("node_content_type", "text", "");
+            return;
+        }
+
+        var card = document.ViewCard.obj;
+        var rows = card.container.style.rows;
+        var cols = card.container.style.cols;
+        var cells = card.container.style.cells;
+        var data_cell = null;
+
+        for (var i = 0; i < cells.length; i++) {
+            var this_cell = cells[i];
+            if (this_cell.col == cell.getAttribute("col") && this_cell.row == cell.getAttribute("row")) {
+                data_cell = this_cell;
+                continue;
+            }
+        }
+
+        if (data_cell === null) {
+            return;
+        }
+
+        // show height, width, content type, and content binding for the selected cell 
+        this.set_field("node_content_row_height", "text", rows[data_cell.row].height);
+        this.set_field("node_content_col_width", "text", cols[data_cell.col].width);
+        this.set_field("node_content_binding", "text", data_cell.content_binding);
+        this.set_field("node_content_type", "text", data_cell.content);
+    },
+
+    pop_style_fields: function(cell) {
+        // if cell is null, clear fields
+        if (cell === null || cell === undefined) {
+            // TODO: update object if needed 
+            this.set_field("content_style_font_family", "text", "");
+            this.set_field("content_style_font_size", "text", "");
+            this.set_field("content_style_font_weight", "text", "");
+            this.set_field("content_style_font_color", "text", "");
+            this.set_field("content_style_text_decoration", "text", "");
+            this.set_field("content_style_h_alignment", "text", "");
+            this.set_field("content_style_v_align", "text", "");
+            return;
+        }
+
+        var card = document.ViewCard.obj;
+        var rows = card.container.style.rows;
+        var cols = card.container.style.cols;
+        var cells = card.container.style.cells;
+        var data_cell = null;
+
+        for (var i = 0; i < cells.length; i++) {
+            var this_cell = cells[i];
+            if (this_cell.col == cell.getAttribute("col") && this_cell.row == cell.getAttribute("row")) {
+                data_cell = this_cell;
+                continue;
+            }
+        }
+
+        if (data_cell === null || data_cell.style === undefined) {
+            return;
+        }
+
+        if (data_cell.style.font) {
+            this.set_field("content_style_font_family", "text", data_cell.style.font.family);
+            this.set_field("content_style_font_size", "text", data_cell.style.font.size);
+            this.set_field("content_style_font_weight", "text", data_cell.style.font.weight);
+            this.set_field("content_style_font_color", "text", data_cell.style.font.color);
+            this.set_field("content_style_text_decoration", "text", data_cell.style.textDecoration);
+        }
+
+        this.set_field("content_style_h_alignment", "text", data_cell.style.horizontalAlignment);
+        this.set_field("content_style_v_align", "text", data_cell.style.verticalAlignment);
+    },
+
+    set_field: function(field_name, type, value) {
+        if (value === undefined || value === null)
+            return;
+
+        if (type == "text") {
+            var field = getFieldByName(field_name).getElementsByTagName("input")[0];
+            field.value = value;
+        }
+    }
+};]]></method_code>
+  <method_type>JavaScript</method_type>
+  <name>labs_ViewCard_LoadFunctions</name>
+ </Item>
+</AML>

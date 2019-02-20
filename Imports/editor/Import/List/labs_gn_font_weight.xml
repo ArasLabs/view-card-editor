@@ -1,0 +1,91 @@
+﻿<AML>
+ <Item type="List" id="6E84B8AF5B0349019E2847070390CE95" action="add">
+  <name>labs_gn_font_weight</name>
+  <Relationships>
+   <Item type="Value" id="9EA0C0CEEE3E46D5A9F72201F59759F2" action="add">
+    <label xml:lang="en">inherit</label>
+    <sort_order>0</sort_order>
+    <source_id keyed_name="labs_gn_font_weight" type="List">6E84B8AF5B0349019E2847070390CE95</source_id>
+    <value>inherit</value>
+   </Item>
+   <Item type="Value" id="A8B22D46782B4C46A964291BA4932943" action="add">
+    <label xml:lang="en">normal</label>
+    <sort_order>5</sort_order>
+    <source_id keyed_name="labs_gn_font_weight" type="List">6E84B8AF5B0349019E2847070390CE95</source_id>
+    <value>normal</value>
+   </Item>
+   <Item type="Value" id="221036C953A14BC89BE6B52D22786715" action="add">
+    <label xml:lang="en">bold</label>
+    <sort_order>10</sort_order>
+    <source_id keyed_name="labs_gn_font_weight" type="List">6E84B8AF5B0349019E2847070390CE95</source_id>
+    <value>bold</value>
+   </Item>
+   <Item type="Value" id="FA897CACC9E0447B8D963AAC3AEF2BEB" action="add">
+    <label xml:lang="en">bolder</label>
+    <sort_order>15</sort_order>
+    <source_id keyed_name="labs_gn_font_weight" type="List">6E84B8AF5B0349019E2847070390CE95</source_id>
+    <value>bolder</value>
+   </Item>
+   <Item type="Value" id="7313ECE761794E3780370F924ACCA8B7" action="add">
+    <label xml:lang="en">lighter</label>
+    <sort_order>20</sort_order>
+    <source_id keyed_name="labs_gn_font_weight" type="List">6E84B8AF5B0349019E2847070390CE95</source_id>
+    <value>lighter</value>
+   </Item>
+   <Item type="Value" id="2AF8E8622A75404688028C77939EBEC6" action="add">
+    <label xml:lang="en">100</label>
+    <sort_order>148</sort_order>
+    <source_id keyed_name="labs_gn_font_weight" type="List">6E84B8AF5B0349019E2847070390CE95</source_id>
+    <value>100</value>
+   </Item>
+   <Item type="Value" id="3791E466F5244BCFA66909A32DA3E732" action="add">
+    <label xml:lang="en">200</label>
+    <sort_order>276</sort_order>
+    <source_id keyed_name="labs_gn_font_weight" type="List">6E84B8AF5B0349019E2847070390CE95</source_id>
+    <value>200</value>
+   </Item>
+   <Item type="Value" id="1DC66C9189CA40D4A41374B6D7DE025E" action="add">
+    <label xml:lang="en">300</label>
+    <sort_order>404</sort_order>
+    <source_id keyed_name="labs_gn_font_weight" type="List">6E84B8AF5B0349019E2847070390CE95</source_id>
+    <value>300</value>
+   </Item>
+   <Item type="Value" id="9E30007077B34815B26ACD9B2AD43259" action="add">
+    <label xml:lang="en">400</label>
+    <sort_order>532</sort_order>
+    <source_id keyed_name="labs_gn_font_weight" type="List">6E84B8AF5B0349019E2847070390CE95</source_id>
+    <value>400</value>
+   </Item>
+   <Item type="Value" id="9794EE4D78D2400BA0103DB34F4D82C0" action="add">
+    <label xml:lang="en">500</label>
+    <sort_order>660</sort_order>
+    <source_id keyed_name="labs_gn_font_weight" type="List">6E84B8AF5B0349019E2847070390CE95</source_id>
+    <value>500</value>
+   </Item>
+   <Item type="Value" id="C4DF533EA0F34F7DB44D2BDAF07DB6BA" action="add">
+    <label xml:lang="en">600</label>
+    <sort_order>788</sort_order>
+    <source_id keyed_name="labs_gn_font_weight" type="List">6E84B8AF5B0349019E2847070390CE95</source_id>
+    <value>600</value>
+   </Item>
+   <Item type="Value" id="B0A988A33095441BBC8C962EEA579E91" action="add">
+    <label xml:lang="en">700</label>
+    <sort_order>916</sort_order>
+    <source_id keyed_name="labs_gn_font_weight" type="List">6E84B8AF5B0349019E2847070390CE95</source_id>
+    <value>700</value>
+   </Item>
+   <Item type="Value" id="69462FFDCD0D42F9B1DFD089BAFF67CA" action="add">
+    <label xml:lang="en">800</label>
+    <sort_order>1044</sort_order>
+    <source_id keyed_name="labs_gn_font_weight" type="List">6E84B8AF5B0349019E2847070390CE95</source_id>
+    <value>800</value>
+   </Item>
+   <Item type="Value" id="F3D332F22169485990FA1799D4F1A7F5" action="add">
+    <label xml:lang="en">900</label>
+    <sort_order>1172</sort_order>
+    <source_id keyed_name="labs_gn_font_weight" type="List">6E84B8AF5B0349019E2847070390CE95</source_id>
+    <value>900</value>
+   </Item>
+  </Relationships>
+ </Item>
+</AML>

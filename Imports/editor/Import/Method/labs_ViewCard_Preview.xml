@@ -1,0 +1,64 @@
+﻿<AML>
+ <Item type="Method" id="02119B4DC5234D9EB4A97C6100095F87" action="add">
+  <comments>Method loads a Graph View to be embedded as a previewer in the View Card form.</comments>
+  <execution_allowed_to keyed_name="Administrators" type="Identity">2618D6F5A90949BAA7E920D1B04C7EE1</execution_allowed_to>
+  <method_code><![CDATA[// clear divs
+var view = document.getElementById("graphView");
+view.innerHTML = "";
+
+// get data needed to display the graph view (context item, graph view definition, etc)
+var inn = aras.newIOMInnovator();
+var itemTypeName = getFieldByName("preview_itemtype").getElementsByTagName("input")[0].value;
+var itemKN = getFieldByName("preview_item").getElementsByTagName("input")[0].value;
+
+var item = inn.newItem(itemTypeName, "get");
+item.setProperty("keyed_name", itemKN);
+item = item.apply();
+
+if (item.isError())
+    return alert("item is error: " + item);
+
+var itemId = item.getID();
+
+var gvdKN = getFieldByName("preview_gvd").getElementsByTagName("input")[0].value;
+
+var gvd = inn.newItem("gn_GraphViewDefinition", "get");
+gvd.setProperty("keyed_name", gvdKN);
+gvd = gvd.apply();
+
+if (gvd.isError())
+    return alert("gvd is error: " + gvd);
+
+var gvd_id = gvd.getID();
+
+// resize html field
+var field = document.getElementById("A6260256F9564425BBE3803E4EACD504span");
+field.style.height = "550px";
+field.style.width = "600px";
+
+// display graph view
+require(['GraphView/Scripts/GraphViewApplicationCore', 'GraphView/Scripts/GraphTooltip'],
+    function(GraphViewApplicationCore) {
+        const arasObject = window.aras || parent.aras;
+
+        let applicationCore = null;
+        applicationCore = new GraphViewApplicationCore({
+            contextItem: item,
+            arasObject: arasObject,
+            gvdId: gvd_id
+        });
+        applicationCore.init();
+
+        applicationCore.loadView(itemId, itemTypeName);
+    }
+);
+
+// hide open graph selector and divider
+var list = document.getElementById("graphToolbarSALTkA7_Aras_Tbi_openGVD");
+list.style.display = "none";
+var divider = document.getElementById("graphToolbarSALTkA7_Aras_Tbi_emptyId_1");
+divider.style.display = "none";]]></method_code>
+  <method_type>JavaScript</method_type>
+  <name>labs_ViewCard_Preview</name>
+ </Item>
+</AML>

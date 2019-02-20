@@ -1,0 +1,5 @@
+<imports>
+  <package name="aras.labs.graph_nav.editor" path="editor\Import">
+    <dependson name="com.aras.innovator.graph_navigation" />
+  </package>
+</imports>

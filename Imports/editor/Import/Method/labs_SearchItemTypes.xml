@@ -1,0 +1,43 @@
+﻿<AML>
+ <Item type="Method" id="19DAF8869B4E489495F815C5F93226B1" action="add">
+  <comments>An onClick event that loads a search dialog for ItemTypes.</comments>
+  <execution_allowed_to keyed_name="Administrators" type="Identity">2618D6F5A90949BAA7E920D1B04C7EE1</execution_allowed_to>
+  <method_code><![CDATA[// onClick field event for Search button
+// Calls a search dialog and returns the search result
+var param = {
+    aras: top.aras,
+    itemtypeName: 'ItemType',
+    multiselect: false,
+    type: 'SearchDialog',
+    dialogHeight: 450,
+    dialogWidth: 700,
+    resizable: true
+};
+
+var searchedItem;
+var callback = function(dlgRes) {
+    if (!dlgRes) {
+        return;
+    }
+
+    searchedItem = dlgRes.item;
+    if (!searchedItem) {
+        return;
+    }
+    // set itemtype field
+    var keyed_name = top.aras.getKeyedNameEx(searchedItem);
+    var table = getFieldByName("preview_itemtype").getElementsByTagName("input")[0];
+    table.setAttribute("value", keyed_name);
+
+    // clear root item field
+    var table2 = getFieldByName("preview_item").getElementsByTagName("input")[0];
+    table2.setAttribute("value", "");
+};
+
+var wnd = top.aras.getMainWindow();
+wnd = wnd === top ? wnd.main : top;
+wnd.ArasModules.Dialog.show('iframe', param).promise.then(callback);]]></method_code>
+  <method_type>JavaScript</method_type>
+  <name>labs_SearchItemTypes</name>
+ </Item>
+</AML>
