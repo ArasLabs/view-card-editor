@@ -2,7 +2,7 @@
  <Item type="Form" id="B15A43D5147D4B36B478A1EE9623A532" action="add">
   <category_form>0</category_form>
   <description>Custom editor with preview</description>
-  <height>234</height>
+  <height>600</height>
   <stylesheet><![CDATA[../styles/default.css]]></stylesheet>
   <width>699</width>
   <name>labs_ViewCard</name>
@@ -18,18 +18,18 @@
 
 .sys_fn_card_preview {
     width: 600px;
-    height: 600px;
+    height: 475px;
 overflow: hidden;
 }
 
 #A6260256F9564425BBE3803E4EACD504span {
     width: 600px;
-    height: 600px;
+    height: 475px;
 }
 
     #editor-tabs {
         border-right: 1px solid #d6d6d6;
-        height: 600px;
+        height: 475px;
         width: 180px;
         padding-top: 120px;
     }
