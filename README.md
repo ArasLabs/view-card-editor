@@ -13,12 +13,14 @@ This project provides an alternate GUI for editing the View Cards used by Aras G
 
 Release | Notes
 --------|--------
+[v1.0.1](https://github.com/ArasLabs/view-card-editor/releases/tag/v1.0.1) | Form updated for Innovator 12.0.
 [v1.0.0](https://github.com/ArasLabs/view-card-editor/releases/tag/v1.0.0) | First release.
 
 #### Supported Aras Versions
 
 Project | Aras
 --------|------
+[v1.0.1](https://github.com/ArasLabs/view-card-editor/releases/tag/v1.0.1) | 11.0 SP15, 12.0
 [v1.0.0](https://github.com/ArasLabs/view-card-editor/releases/tag/v1.0.0) | 11.0 SP15
 
 ## Installation
